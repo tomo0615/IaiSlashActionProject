@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
         if (hitCount > 0) return;
 
         Destroy(gameObject);
-        //
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Attack"))
         {
             hitCount--;
-            GameEffectController.Instance.ShakeCamera(0.5f);
+           // GameEffectController.Instance.ShakeCamera(0.5f);
 
             Death();
         }

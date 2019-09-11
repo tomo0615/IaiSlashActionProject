@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+﻿//using DG.Tweening;
 using UnityEngine;
 
 public class GameEffectController : SingletonMonoBehaviour<GameEffectController>
@@ -12,7 +12,7 @@ public class GameEffectController : SingletonMonoBehaviour<GameEffectController>
         mainCamera = Camera.main.transform;
         isShaking = false;
     }
-
+    /*
     public void ShakeCamera(float time)
     {
         if (isShaking) return;
@@ -24,4 +24,5 @@ public class GameEffectController : SingletonMonoBehaviour<GameEffectController>
                 isShaking = false;
             });
     }
+    */
 }
