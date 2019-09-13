@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlashEffect : MonoBehaviour
 {
-    [SerializeField]private double finishTime = 2.0f;
+    [SerializeField]private double finishTime = 1.0f;
 
     private ParticleSystem _slashEffect;
 
