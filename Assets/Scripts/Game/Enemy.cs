@@ -18,8 +18,9 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Attack"))
         {
             hitCount--;
-           // GameEffectController.Instance.ShakeCamera(0.5f);
 
+            //GameEffectManager.Instance.ShakeCamera(0.5f);
+            GameEffectManager.Instance.OnGetScorePlayer(other.transform.position);
             Death();
         }
     }
