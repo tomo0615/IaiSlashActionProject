@@ -1,19 +1,15 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
     private Rigidbody _rigidbody;
 
-    private PlayerController _playerCtrl;
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _playerCtrl = GetComponent<PlayerController>();
     }
 
-    public void IaiSlash()
+    public void IaiSlash(float slashSpeed)
     {
         var pos = Camera.main.WorldToScreenPoint(transform.localPosition);
 
@@ -24,11 +20,11 @@ public class PlayerAttacks : MonoBehaviour
         transform.localRotation = rotation * Quaternion.Euler(0f, 0f, 90f);
 
         _rigidbody.velocity = Vector2.zero;
-        _rigidbody.velocity = lookDirection * _playerCtrl.SlashSpeed;
+        _rigidbody.velocity = lookDirection * slashSpeed;
     }
 
-    public void ChargeSlashCount()
+    public float ChargeSlashCount()
     { 
-        _playerCtrl.slashCount += Time.deltaTime; //TODO：指数的に増やす
+        return Time.deltaTime; //TODO：指数的に減らす　1~5の間で徐々にチャージスピードを減らす
     }
 }

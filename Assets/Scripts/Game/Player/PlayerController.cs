@@ -12,13 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]private float moveSpeed = 300f;
 
     [SerializeField]private float slashSpeed = 50f;
-    public float SlashSpeed
-    {
-        get { return slashSpeed; }
-        private set { }
-    }
-    public float slashCount { get; set; }     //UIの表示で取得したい
 
+    public float slashCount { get; set; } = 0;    //UIの表示で取得したい
+    
     [SerializeField]private float jumpPower = 3000f;
 
     [SerializeField]private int jumpCount = 1;
@@ -49,14 +45,15 @@ public class PlayerController : MonoBehaviour
 
             attackObject.SetActive(true);
             ChangeLayer();
+
             isMoveable = true;
             slashCount--;
 
-            _playerAttacks.IaiSlash();
+            _playerAttacks.IaiSlash(slashSpeed);
         }
         else if(_playerInputs.IsCharge)
         {
-            _playerAttacks.ChargeSlashCount();
+            slashCount += _playerAttacks.ChargeSlashCount();
 
             isMoveable = false;
         }
