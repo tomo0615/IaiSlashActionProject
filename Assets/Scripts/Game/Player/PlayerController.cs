@@ -91,6 +91,10 @@ public class PlayerController : MonoBehaviour
         {
             jumpCount = 1; //TODO:JumpCountを戻す処理にする
         }
+        else
+        {
+            _playerMover.Stop();//壁抜け防止
+        }
 
         attackObject.SetActive(false);
         ChangeLayer();

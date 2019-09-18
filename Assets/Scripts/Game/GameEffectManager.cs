@@ -45,7 +45,7 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
     }
     */
 
-    public void OnGetScorePlayer(Vector3 position)
+    public void OnHitAttack(Vector3 position)
     {
         var gameObj = _effectPool.Rent();
 
