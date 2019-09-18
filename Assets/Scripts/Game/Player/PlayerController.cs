@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     #region パラメータ
     [SerializeField]private float moveSpeed = 300f;
 
-    [SerializeField]private float slashSpeed = 50f;
+    [SerializeField]private float slashSpeed = 70f;
 
     public float slashCount { get; set; } = 0;    //UIの表示で取得したい
     
@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
             attackObject.SetActive(true);
             ChangeLayer();
 
-            isMoveable = true;
             slashCount--;
 
             _playerAttacks.IaiSlash(slashSpeed);
@@ -57,11 +56,14 @@ public class PlayerController : MonoBehaviour
 
             isMoveable = false;
         }
-
-        if (IsJumpable())
+        else if (IsJumpable() && isMoveable)
         {
             _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);
             jumpCount--;
+        }
+        else
+        {
+            isMoveable = true;
         }
     }
 
