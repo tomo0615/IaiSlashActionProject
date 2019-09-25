@@ -2,7 +2,7 @@
 
 namespace IaiAction.Enemys
 {
-    public abstract class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
         #region パラメータ
         [SerializeField] public int hitPoint = 1;
