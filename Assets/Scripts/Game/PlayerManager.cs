@@ -6,7 +6,7 @@ public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
 
     public Transform playerTransform { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
         playerTransform = player.transform;
     }

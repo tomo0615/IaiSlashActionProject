@@ -2,7 +2,7 @@
 
 namespace IaiAction.Enemys
 {
-    public class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour
     {
         #region パラメータ
         [SerializeField] public int hitPoint = 1;
@@ -44,19 +44,22 @@ namespace IaiAction.Enemys
         #region　State用関数
         private void Wait()
         {
+            Debug.Log("Waitなう");
             //待機モーション
         }
 
         private void Attack()
         {
+            Debug.Log("Attackなう");
             //当たり判定のある何かを出す　or アニメーションを動かす
         }
         private void Chase()
         {
+            Debug.Log("Chaseなう");
             //moveAnimation実装
         }
 
-        private void Freeze()
+        public virtual void Freeze()
         {
             //ヒットストップ用（仮）
         }
@@ -75,7 +78,7 @@ namespace IaiAction.Enemys
             {
                 hitPoint--;
 
-                //GameEffectManager.Instance.ShakeCamera(0.5f);
+                GameEffectManager.Instance.ShakeCamera(0.25f);
                 GameEffectManager.Instance.OnHitAttack(other.transform.position);
                 Death();
             }
