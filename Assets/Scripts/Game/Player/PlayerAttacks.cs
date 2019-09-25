@@ -2,16 +2,16 @@
 
 public class PlayerAttacks : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
-
+    private Rigidbody _rigidbody;   
+            
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void IaiSlash(float slashSpeed)
+    public void IaiSlash(float slashSpeed) //TODO:複数のことをやっているので分ける
     {
-        var pos = Camera.main.WorldToScreenPoint(transform.localPosition);
+        var pos = Camera.main.WorldToScreenPoint(transform.localPosition); //コンストラクタを作るとエラーを吐く
 
         var lookDirection = (Vector2)(Input.mousePosition - pos);
         lookDirection = lookDirection.normalized;

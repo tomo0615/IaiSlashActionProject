@@ -1,8 +1,7 @@
-﻿//using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
-using System;
 
 public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
 {
@@ -31,7 +30,7 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
         //破棄されたときにPoolを解放する
         this.OnDestroyAsObservable().Subscribe(_ => _effectPool.Dispose());
     }
-    /*
+    
     public void ShakeCamera(float time)
     {
         if (isShaking) return;
@@ -43,9 +42,8 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
                 isShaking = false;
             });
     }
-    */
 
-    public void OnGetScorePlayer(Vector3 position)
+    public void OnHitAttack(Vector3 position)
     {
         var gameObj = _effectPool.Rent();
 

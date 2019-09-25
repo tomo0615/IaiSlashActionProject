@@ -33,4 +33,9 @@ public class PlayerMover
     {
         _rigidbody.AddForce(jumpDirection);
     }
+
+    public void Stop()
+    {
+        _rigidbody.velocity = Vector3.zero;
+    }
 }

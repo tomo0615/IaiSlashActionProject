@@ -16,7 +16,6 @@ public class SlashEffect : MonoBehaviour
         }
     }
 
-
     public IObservable<Unit> PlayEffect(Vector3 position)
     {
         transform.position = position;
