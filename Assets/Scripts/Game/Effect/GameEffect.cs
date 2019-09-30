@@ -2,17 +2,17 @@
 using UniRx;
 using UnityEngine;
 
-public class SlashEffect : MonoBehaviour
+public class GameEffect : MonoBehaviour
 {
-    [SerializeField]private double finishTime = 1.0f;
+    [SerializeField] private double finishTime = 1.0f;
 
-    private ParticleSystem _slashEffect;
+    private ParticleSystem effect { get; set; }
 
     private ParticleSystem Effect
     {
         get
         {
-            return _slashEffect ?? (_slashEffect = GetComponent<ParticleSystem>());
+            return effect ?? (effect = GetComponent<ParticleSystem>());
         }
     }
 

@@ -65,7 +65,7 @@ namespace IaiAction.Enemys
         }
         #endregion
 
-        private void Death()
+        public void Death()
         {
             if (hitPoint > 0) return;
 
@@ -79,7 +79,10 @@ namespace IaiAction.Enemys
                 hitPoint--;
 
                 GameEffectManager.Instance.ShakeCamera(0.25f);
-                GameEffectManager.Instance.OnHitAttack(other.transform.position);
+
+                GameEffectManager.Instance.OnGenelateEffect(other.transform.position,
+                    GameEffectManager.EffectType.Slash);
+
                 Death();
             }
         }
