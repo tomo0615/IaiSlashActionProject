@@ -5,19 +5,19 @@ using UniRx.Triggers;
 using System.Collections.Generic;
 using System;
 
+public enum EffectType //列挙型のeffectの名前を同じにする
+{                      //Effect名をここに追加
+    Explosion,
+    Slash
+}
+
 public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
 {
-    //列挙型のeffectの名前を同じにする
-    public enum EffectType
-    {
-        Explosion,
-        Slash
-    }
-
+    #region particle用
     private Dictionary<EffectType ,EffectPool> _effectPool = new Dictionary<EffectType, EffectPool>();
 
     [SerializeField] private List<GameEffect> effectList = new List<GameEffect>();
-
+    #endregion
     private Transform _myTransform;
 
     private bool isShaking;
@@ -31,6 +31,11 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
         mainCamera = Camera.main.transform;
         isShaking = false;
 
+        InitializeEffectList();
+    }
+
+    private void InitializeEffectList()
+    {
         //すべてのエフェクトをディクショナリに格納
         foreach (var effect in effectList)
         {
@@ -41,14 +46,14 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
         }
 
         //オブジェクトが破棄されたときにプールを破棄できるようにする
-        foreach(var value in _effectPool.Values)
+        foreach (var value in _effectPool.Values)
         {
             this.OnDestroyAsObservable().Subscribe(_ => value.Dispose());
         }
     }
-
     public void OnGenelateEffect(Vector3 position, EffectType type)
     {
+        //poolから借りて終わったら返す
         var gameObj = _effectPool[type].Rent();
 
         gameObj.PlayEffect(position)
