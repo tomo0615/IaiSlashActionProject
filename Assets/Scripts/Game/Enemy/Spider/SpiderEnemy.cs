@@ -34,8 +34,9 @@ public class SpiderEnemy : Enemy
        yield return new WaitForSeconds(explosionTime);
 
         //ココを爆発エフェクトに変更する
-       GameEffectManager.Instance.OnGenelateEffect(transform.position,
-            GameEffectManager.EffectType.Slash);
+       GameEffectManager.Instance.OnGenelateEffect(
+           transform.position,
+           EffectType.Explosion);
 
         hitPoint = 0;
         Death();

@@ -80,8 +80,9 @@ namespace IaiAction.Enemys
 
                 GameEffectManager.Instance.ShakeCamera(0.25f);
 
-                GameEffectManager.Instance.OnGenelateEffect(other.transform.position,
-                    GameEffectManager.EffectType.Slash);
+                GameEffectManager.Instance.OnGenelateEffect(
+                    other.transform.position,
+                    EffectType.Slash);
 
                 Death();
             }
