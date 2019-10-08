@@ -35,7 +35,7 @@ public class SpiderEnemy : Enemy
 
         //ココを爆発エフェクトに変更する
        GameEffectManager.Instance.OnGenelateEffect(transform.position,
-            GameEffectManager.EffectType.Slash);
+            GameEffectManager.EffectType.Explosion);
 
         hitPoint = 0;
         Death();

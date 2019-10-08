@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5372881030749867932}
   - component: {fileID: 5372881030749867931}
   - component: {fileID: 5372881030749867930}
-  - component: {fileID: 8318060046012756919}
+  - component: {fileID: 4585852574988026454}
   m_Layer: 0
-  m_Name: SlashEffect
+  m_Name: Slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4699,7 +4699,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8318060046012756919
+--- !u!114 &4585852574988026454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4708,7 +4708,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5372881030749867929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13dca028292f22d41a0237af4818d3ff, type: 3}
+  m_Script: {fileID: 11500000, guid: f7e3098aad635df49a67d24c87967a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishTime: 0.5
+  finishTime: 1
