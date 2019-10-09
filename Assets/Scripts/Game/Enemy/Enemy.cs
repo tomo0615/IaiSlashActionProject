@@ -1,8 +1,18 @@
 ﻿using UnityEngine;
+using UniRx;
+using System;
+
+public enum EnemyState
+{
+    Wait,
+    Chase,
+    Attack,
+    Freeze
+};
 
 namespace IaiAction.Enemys
 {
-    public class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviour, IDamageable, IAttackable
     {
         #region パラメータ
         [SerializeField] public int hitPoint = 1;
@@ -10,16 +20,20 @@ namespace IaiAction.Enemys
         [SerializeField] public float moveSpeed = 10;
         #endregion
 
-        public enum EnemyState
-        {
-            Wait,
-            Chase,
-            Attack,
-            Freeze
-        };
+        public Subject<int> hpSubject = new Subject<int>();
+
+        public IObservable<int> OnHPChanged { get { return hpSubject; } }
 
         public EnemyState currentState;
 
+        private void Start()
+        {
+            this.OnHPChanged
+                .Subscribe(_ =>
+                {
+                    if (hitPoint <= 0) Death();
+                });
+        }
         public void SetEnemyState(EnemyState state)
         {
             currentState = state;
@@ -67,25 +81,14 @@ namespace IaiAction.Enemys
 
         public void Death()
         {
-            if (hitPoint > 0) return;
-
+            //TODO：死んだときのeffectの追加
+            Debug.Log("死");
             Destroy(gameObject);
         }
 
-        public void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.CompareTag("Attack"))
-            {
-                hitPoint--;
+        public abstract void ApplyDamage();
 
-                GameEffectManager.Instance.ShakeCamera(0.25f);
 
-                GameEffectManager.Instance.OnGenelateEffect(
-                    other.transform.position,
-                    EffectType.Slash);
-
-                Death();
-            }
-        }
+        public abstract void Attacked();
     }
 }

@@ -7,7 +7,6 @@ public class SpiderEnemy : Enemy
     private void Update() //TODO:EnemyUpdateに変更してManagerクラスのUpdateで呼び出す
     {
         if (currentState == EnemyState.Chase) Chase();
-        else if (currentState == EnemyState.Attack) StartCoroutine(Explode());
     }
 
     private void Chase()
@@ -18,6 +17,7 @@ public class SpiderEnemy : Enemy
 
         if (Vector2.Distance(playerPos, transform.position) <= 1.5f)
         {
+            StartCoroutine(Explode());
             SetEnemyState(EnemyState.Attack);
         }
 
@@ -39,8 +39,16 @@ public class SpiderEnemy : Enemy
            EffectType.Explosion);
 
         hitPoint = 0;
-        Death();
     }
 
-    
+    public  override void ApplyDamage()
+    {
+
+    }
+
+    public override void Attacked()
+    {
+        hitPoint--;
+        hpSubject.OnNext(hitPoint);
+    }
 }

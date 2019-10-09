@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            jumpCount = 1; //TODO:JumpCountを戻す処理にする
+            jumpCount = 1; //TODO:JumpCountを戻す処理にする マジックナンバーを消す
         }
         else
         {
