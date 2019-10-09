@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour , IDamageable, IAttackable
 {
     private PlayerInputs _playerInputs;
 
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private protected bool isMoveable = true;
 
-    [SerializeField]private GameObject attackObject = null;
+    [SerializeField]private GameObject attackObject = null;//攻撃時にPlayerノ前に出るオブジェクト
 
     private void Awake()
     {
@@ -84,6 +84,16 @@ public class PlayerController : MonoBehaviour
         var layerName = attackObject.activeSelf ? "NoneHitEnemy" : "Player";
 
         gameObject.layer = LayerMask.NameToLayer(layerName);
+    }
+
+    public void ApplyDamage()
+    {
+        
+    }
+
+    public void Attacked()
+    {
+        
     }
 
     #region 当たり判定
