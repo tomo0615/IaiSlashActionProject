@@ -16,5 +16,4 @@ public class AttackObject : MonoBehaviour
                 EffectType.Slash);
         }
     }
-
 }
