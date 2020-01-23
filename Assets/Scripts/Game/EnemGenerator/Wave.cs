@@ -2,7 +2,7 @@
 using UnityEngine;
 
 //コンフリクトしないように名前をTestにしてます
-public class WaveTest : MonoBehaviour
+public class Wave : MonoBehaviour
 {
     public List<EnemyTest> enemyList
     {

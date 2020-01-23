@@ -6,11 +6,11 @@ using System.Linq;
 
 public class Waves : MonoBehaviour
 {
-    private List<WaveTest> waveList = new List<WaveTest>();
+    private List<Wave> waveList = new List<Wave>();
 
     private int currentWaveIndex = 0;
 
-    public WaveTest CurrentWave() => waveList[currentWaveIndex];
+    public Wave CurrentWave() => waveList[currentWaveIndex];
 
     public int WaveMaxCount() => waveList.Count;
 
@@ -33,7 +33,7 @@ public class Waves : MonoBehaviour
 
     private void InitializeWaveList()
     {
-        waveList = GetComponentsInChildren<WaveTest>().Select(
+        waveList = GetComponentsInChildren<Wave>().Select(
             (wave, index) =>
             {
                 wave.InitializeWave();
