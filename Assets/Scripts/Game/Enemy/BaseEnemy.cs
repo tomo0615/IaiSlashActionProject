@@ -12,7 +12,7 @@ public enum EnemyState
 
 namespace IaiAction.Enemys
 {
-    public abstract class Enemy : MonoBehaviour, IDamageable, IAttackable
+    public abstract class BaseEnemy : MonoBehaviour, IDamageable, IAttackable
     {
         #region パラメータ
         [SerializeField] public int hitPoint = 1;

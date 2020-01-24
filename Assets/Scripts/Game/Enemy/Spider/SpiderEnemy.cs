@@ -1,7 +1,7 @@
 ﻿using IaiAction.Enemys;
 using UnityEngine;
 using System.Collections;
-public class SpiderEnemy : Enemy
+public class SpiderEnemy : BaseEnemy
 {
     [SerializeField]private float explosionTime = 3f;
     private void Update() //TODO:EnemyUpdateに変更してManagerクラスのUpdateで呼び出す
