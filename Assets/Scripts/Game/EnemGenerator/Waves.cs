@@ -9,7 +9,6 @@ public class Waves : MonoBehaviour
     private List<Wave> waveList = new List<Wave>();
 
     private int currentWaveIndex = 0;
-
     public Wave CurrentWave() => waveList[currentWaveIndex];
 
     public int WaveMaxCount() => waveList.Count;

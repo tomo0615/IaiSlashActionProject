@@ -1,19 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using IaiAction.Enemys;
+using System.Collections.Generic;
 using UnityEngine;
 
 //コンフリクトしないように名前をTestにしてます
 public class Wave : MonoBehaviour
 {
-    public List<EnemyTest> enemyList
-    {
-        get; private set;
-    }
-    = new List<EnemyTest>();
+    private  List<BaseEnemy> enemyList = new List<BaseEnemy>();
 
     public void InitializeWave()
     {
         //子のEnemyをListに格納
-        var enemys = GetComponentsInChildren<EnemyTest>();
+        var enemys = GetComponentsInChildren<BaseEnemy>();
 
         foreach(var enemy in enemys)
         {

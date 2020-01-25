@@ -83,7 +83,8 @@ namespace IaiAction.Enemys
         {
             //TODO：死んだときのeffectの追加
             Debug.Log("死");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
         public abstract void ApplyDamage();
