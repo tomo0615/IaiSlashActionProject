@@ -1978,8 +1978,30 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7363968538397589343, guid: 5d4b5a591108c0845a849291cf3ba9e4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5d4b5a591108c0845a849291cf3ba9e4, type: 3}
+--- !u!1 &7363968538893174272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7363968538397555139, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7363968538893174271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7363968538893174273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363968538893174272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7316f7ead681da4dbc0fbaaf2f8eee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoint: 100000
+  moveSpeed: 0
+  currentState: 0
 --- !u!1001 &8665083841529051931
 PrefabInstance:
   m_ObjectHideFlags: 0
