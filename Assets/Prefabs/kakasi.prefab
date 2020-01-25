@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7363968538399483651}
   - component: {fileID: 7363968538397589345}
   - component: {fileID: 7363968538397589344}
-  - component: {fileID: 7363968538397589343}
+  - component: {fileID: 3513861884674416013}
+  - component: {fileID: 7363968538893174273}
   m_Layer: 9
   m_Name: kakasi
   m_TagString: Untagged
@@ -68,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -95,7 +97,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &7363968538397589344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109,7 +111,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5619705, y: 2.3773677, z: 0.5}
   m_Center: {x: -0.03186261, y: 1.2330788, z: 0}
---- !u!114 &7363968538397589343
+--- !u!114 &3513861884674416013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,8 +120,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7363968538397555139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb638982fb75b994aaf9ef8b6fdb397b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7316f7ead681da4dbc0fbaaf2f8eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 100
+  hitPoint: 1
+  moveSpeed: 10
+  currentState: 0
+--- !u!114 &7363968538893174273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7363968538397555139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7316f7ead681da4dbc0fbaaf2f8eee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoint: 100000
   moveSpeed: 0
+  currentState: 0
