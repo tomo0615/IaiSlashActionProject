@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UniRx;
 
-public class PlayerController : MonoBehaviour , IDamageable, IAttackable
+public class PlayerController : MonoBehaviour, IDamageable
 {
     private PlayerInputs _playerInputs;
 
@@ -20,11 +21,10 @@ public class PlayerController : MonoBehaviour , IDamageable, IAttackable
     [SerializeField]private int jumpCount = 1;
     #endregion
 
-    private float dx;
-
     private protected bool isMoveable = true;
 
-    [SerializeField]private GameObject attackObject = null;//攻撃時にPlayerノ前に出るオブジェクト
+    [SerializeField]
+    private GameObject attackObject = null;//攻撃時にPlayerノ前に出るオブジェクト
 
     private void Awake()
     {
@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour , IDamageable, IAttackable
 
     void Update()
     {
-        dx = Input.GetAxisRaw("Horizontal");
-
         _playerInputs.InputKeys();
 
         if (_playerInputs.IsAttack)
@@ -88,12 +86,7 @@ public class PlayerController : MonoBehaviour , IDamageable, IAttackable
 
     public void ApplyDamage()
     {
-        
-    }
-
-    public void Attacked()
-    {
-        
+        //ダメージを食らう処理
     }
 
     #region 当たり判定
