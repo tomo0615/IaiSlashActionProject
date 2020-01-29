@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private PlayerAttacks _playerAttacks;
 
+    private PlayerAnimator _playerAnimator;
+
     #region パラメータ
     [SerializeField]private float moveSpeed = 300f;
 
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerInputs = new PlayerInputs();
         _playerMover = new PlayerMover(GetComponent<Rigidbody>(), transform);
         _playerAttacks = GetComponent<PlayerAttacks>();
+        _playerAnimator = new PlayerAnimator(transform);
     }
 
     void Update()
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour, IDamageable
             slashCount--;
 
             _playerAttacks.IaiSlash(slashSpeed);
+
+            _playerAnimator.DOMoveAnimation();
         }
         else if(_playerInputs.IsCharge)
         {
