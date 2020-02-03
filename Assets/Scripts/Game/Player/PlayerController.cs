@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField]private float slashSpeed = 70f;
 
-    public float slashCount { get; set; } = 0;    //UIの表示で取得したい
+    //public float slashCount { get; set; } = 0;    //UIの表示で取得したい
     
     [SerializeField]private float jumpPower = 3000f;
 
@@ -42,23 +42,24 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (_playerInputs.IsAttack)
         {
-            if ((int)slashCount <= 0) return;
+            //if (slashCount < 0) return; 
 
             attackObject.SetActive(true);
             ChangeLayer();
 
-            slashCount--;
+            //slashCount--;
 
             _playerAttacks.IaiSlash(slashSpeed);
 
             _playerAnimator.DOMoveAnimation();
         }
+        /*
         else if(_playerInputs.IsCharge)
         {
             slashCount += _playerAttacks.ChargeSlashCount();
 
             isMoveable = false;
-        }
+        }*/
         else if (IsJumpable() && isMoveable)
         {
             _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);

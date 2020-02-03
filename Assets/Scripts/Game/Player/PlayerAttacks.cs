@@ -23,8 +23,10 @@ public class PlayerAttacks : MonoBehaviour
         _rigidbody.velocity = lookDirection * slashSpeed;
     }
 
+    /*
     public float ChargeSlashCount()
     { 
         return Time.deltaTime; //TODO：指数的に減らす　1~5の間で徐々にチャージスピードを減らす
     }
+    */
 }
