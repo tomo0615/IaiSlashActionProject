@@ -3,33 +3,22 @@ using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 using System.Collections.Generic;
-using System;
-
-public enum EffectType //列挙型のeffectの名前を同じにする
-{                      //Effect名をここに追加
-    Explosion,
-    Slash
-}
+//using System;
 
 public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
 {
     #region particle用
     private Dictionary<EffectType ,EffectPool> _effectPool = new Dictionary<EffectType, EffectPool>();
 
-    [SerializeField] private List<GameEffect> effectList = new List<GameEffect>();
+    [SerializeField, Header("EffectTableを設定後アタッチ")]
+    private EffectsTable _effectsTable = null;
     #endregion
+
     private Transform _myTransform;
-
-    private bool isShaking;
-
-    private Transform mainCamera;
 
     private void Start()
     {
         _myTransform = GetComponent<Transform>();
-
-        mainCamera = Camera.main.transform;
-        isShaking = false;
 
         InitializeEffectList();
     }
@@ -37,12 +26,9 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
     private void InitializeEffectList()
     {
         //すべてのエフェクトをディクショナリに格納
-        foreach (var effect in effectList)
+        for (int i = 0; i < _effectsTable.gameEffectList.Count; i++)
         {
-            var name = effect.name;
-            var type = (EffectType)Enum.Parse(typeof(EffectType), name);
-
-            _effectPool.Add(type, new EffectPool(_myTransform, effect));
+            _effectPool.Add((EffectType)i, new EffectPool(_myTransform, _effectsTable.gameEffectList[i])); ;
         }
 
         //オブジェクトが破棄されたときにプールを破棄できるようにする
@@ -60,18 +46,6 @@ public class GameEffectManager : SingletonMonoBehaviour<GameEffectManager>
             .Subscribe(__ =>
             {
                 _effectPool[type].Return(gameObj);
-            });
-    }
-
-    public void ShakeCamera(float time)
-    {
-        if (isShaking) return;
-        isShaking = true;
-
-        mainCamera.DOShakePosition(time)
-            .OnComplete(() =>
-            {
-                isShaking = false;
             });
     }
 }

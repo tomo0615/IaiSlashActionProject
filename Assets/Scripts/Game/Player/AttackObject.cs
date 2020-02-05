@@ -9,7 +9,7 @@ public class AttackObject : MonoBehaviour
         {
             attackable.Attacked();
 
-            GameEffectManager.Instance.ShakeCamera(0.25f);
+            //GameEffectManager.Instance.ShakeCamera(0.25f);
 
             GameEffectManager.Instance.OnGenelateEffect(
                 transform.position,

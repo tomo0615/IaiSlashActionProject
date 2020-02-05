@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameEffect : MonoBehaviour
 {
-    [SerializeField] private double finishTime = 1.0f;
+    [SerializeField, Header("再生時間")]
+    private double finishTime = 1.0f;
 
     private ParticleSystem effect { get; set; }
 
@@ -22,7 +23,8 @@ public class GameEffect : MonoBehaviour
 
         Effect.Play();
 
-        return Observable.Timer(TimeSpan.FromSeconds(finishTime))
-             .ForEachAsync(_ => Effect.Stop());
+        return Observable
+            .Timer(TimeSpan.FromSeconds(finishTime))
+            .ForEachAsync(_ => Effect.Stop());
     }
 }
