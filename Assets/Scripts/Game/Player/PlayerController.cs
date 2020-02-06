@@ -64,41 +64,6 @@ public class PlayerController : MonoBehaviour, IDamageable
             });
     }
 
-    void Update()
-    {
-        //_playerInputs.InputKeys();
-        /*
-        if (_playerInputs.IsAttack)
-        {
-            //if (slashCount < 0) return; 
-
-            ChangeLayer(true);
-
-            //slashCount--;
-
-            _playerAttacks.IaiSlash(slashSpeed);
-
-            _playerAnimator.DOMoveAnimation();
-        }
-        
-        else if(_playerInputs.IsCharge)
-        {
-            slashCount += _playerAttacks.ChargeSlashCount();
-
-            isMoveable = false;
-        }
-        else if (IsJumpable() && isMoveable)
-        {
-            _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);
-            jumpCount--;
-        }
-        else
-        {
-            isMoveable = true;
-        }
-        */
-    }
-
      private bool IsJumpable()
     {
         return jumpCount > 0 && _playerInputs.JumpDirection().magnitude > 0;
@@ -115,9 +80,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         var layerName = attackObject.activeSelf ? "NoneHitEnemy" : "Player";
 
-        gameObject.layer = LayerMask.NameToLayer(layerName);
-
         attackObject.SetActive(attackFlag);
+
+        gameObject.layer = LayerMask.NameToLayer(layerName);
     }
 
     public void ApplyDamage()
