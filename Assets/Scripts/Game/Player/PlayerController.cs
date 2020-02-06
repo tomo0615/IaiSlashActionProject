@@ -36,41 +36,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerAttacks = GetComponent<PlayerAttacks>();
         _playerAnimator = new PlayerAnimator(transform);
     }
-
-    void Update()
+    private void Start()
     {
-        _playerInputs.InputKeys();
-
-        if (_playerInputs.IsAttack)
-        {
-            //if (slashCount < 0) return; 
-
-            ChangeLayer(true);
-
-            //slashCount--;
-
-            _playerAttacks.IaiSlash(slashSpeed);
-
-            _playerAnimator.DOMoveAnimation();
-        }
-        /*
-        else if(_playerInputs.IsCharge)
-        {
-            slashCount += _playerAttacks.ChargeSlashCount();
-
-            isMoveable = false;
-        }*/
-        else if (IsJumpable() && isMoveable)
-        {
-            _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);
-            jumpCount--;
-        }
-        else
-        {
-            isMoveable = true;
-        }
-
-
         //入力
         this.UpdateAsObservable()
             .Subscribe(_ => _playerInputs.InputKeys());
@@ -86,6 +53,50 @@ public class PlayerController : MonoBehaviour, IDamageable
                 _playerAnimator.DOMoveAnimation();
             });
 
+        //ジャンプ
+        this.UpdateAsObservable()
+            .Where(_ => IsJumpable() && isMoveable)
+            .Subscribe(_ =>
+            {
+                _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);
+
+                jumpCount--;
+            });
+    }
+
+    void Update()
+    {
+        //_playerInputs.InputKeys();
+        /*
+        if (_playerInputs.IsAttack)
+        {
+            //if (slashCount < 0) return; 
+
+            ChangeLayer(true);
+
+            //slashCount--;
+
+            _playerAttacks.IaiSlash(slashSpeed);
+
+            _playerAnimator.DOMoveAnimation();
+        }
+        
+        else if(_playerInputs.IsCharge)
+        {
+            slashCount += _playerAttacks.ChargeSlashCount();
+
+            isMoveable = false;
+        }
+        else if (IsJumpable() && isMoveable)
+        {
+            _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);
+            jumpCount--;
+        }
+        else
+        {
+            isMoveable = true;
+        }
+        */
     }
 
      private bool IsJumpable()
