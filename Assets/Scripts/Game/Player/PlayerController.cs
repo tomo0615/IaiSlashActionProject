@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UniRx;
+using UniRx.Triggers;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
@@ -44,8 +45,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             //if (slashCount < 0) return; 
 
-            attackObject.SetActive(true);
-            ChangeLayer();
+            ChangeLayer(true);
 
             //slashCount--;
 
@@ -69,6 +69,23 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             isMoveable = true;
         }
+
+
+        //入力
+        this.UpdateAsObservable()
+            .Subscribe(_ => _playerInputs.InputKeys());
+
+        //居合攻撃
+        this.UpdateAsObservable()
+            .Where(_ => _playerInputs.IsAttack)
+            .Subscribe(_ =>
+            {
+                ChangeLayer(true);
+
+                _playerAttacks.IaiSlash(slashSpeed);
+                _playerAnimator.DOMoveAnimation();
+            });
+
     }
 
      private bool IsJumpable()
@@ -83,11 +100,13 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerMover.Move(_playerInputs.MoveDirection() * moveSpeed);
 
     }
-    private void ChangeLayer()
+    private void ChangeLayer(bool attackFlag)//TODO;関数名を変更する
     {
         var layerName = attackObject.activeSelf ? "NoneHitEnemy" : "Player";
 
         gameObject.layer = LayerMask.NameToLayer(layerName);
+
+        attackObject.SetActive(attackFlag);
     }
 
     public void ApplyDamage()
@@ -107,8 +126,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             _playerMover.Stop();//壁抜け防止
         }
 
-        attackObject.SetActive(false);
-        ChangeLayer();
+        ChangeLayer(false);
     }
     #endregion
 }
