@@ -4,6 +4,8 @@ public class PlayerAttacks : MonoBehaviour
 {
     [SerializeField]
     private float slashSpeed = 100f;
+    [SerializeField]
+    private GameObject attackObject = null;//攻撃時にPlayerの前に出るオブジェクト
 
     private Rigidbody _rigidbody;
 
@@ -24,6 +26,11 @@ public class PlayerAttacks : MonoBehaviour
 
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.velocity = lookDirection * slashSpeed;
+    }
+
+    public void ActiveAttackCollider(bool attackFlag)
+    {
+        attackObject.SetActive(attackFlag);
     }
 
     /*

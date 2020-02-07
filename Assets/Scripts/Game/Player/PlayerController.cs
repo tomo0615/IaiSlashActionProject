@@ -24,9 +24,6 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private protected bool isMoveable = true;
 
-    [SerializeField]
-    private GameObject attackObject = null;//攻撃時にPlayerノ前に出るオブジェクト
-
     private void Awake()
     {
         _playerInputs = new PlayerInputs();
@@ -40,13 +37,20 @@ public class PlayerController : MonoBehaviour, IDamageable
         this.UpdateAsObservable()
             .Subscribe(_ => _playerInputs.InputKeys());
 
+        //Layerの変更
+        this.UpdateAsObservable()
+            .Select(flag => _playerInputs.IsAttack)
+            .Subscribe(flag => 
+            {
+                ChangeLayer(flag);
+                _playerAttacks.ActiveAttackCollider(flag);
+            });
+
         //居合攻撃
         this.UpdateAsObservable()
             .Where(_ => _playerInputs.IsAttack)
             .Subscribe(_ =>
-            {
-                ChangeLayer(true);
-
+            { 
                 _playerAttacks.IaiSlash();
                 _playerAnimator.DOMoveAnimation();
             });
@@ -74,11 +78,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         _playerMover.Move(_playerInputs.MoveDirection() * moveSpeed);
 
     }
-    private void ChangeLayer(bool attackFlag)//TODO;関数名を変更する
+    private void ChangeLayer(bool attackFlag)
     {
-        var layerName = attackObject.activeSelf ? "NoneHitEnemy" : "Player";
-
-        attackObject.SetActive(attackFlag);
+        var layerName = attackFlag ? "NoneHitEnemy" : "Player";
 
         gameObject.layer = LayerMask.NameToLayer(layerName);
     }
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             _playerMover.Stop();//壁抜け防止
         }
 
-        ChangeLayer(false);
+        _playerAttacks.ActiveAttackCollider(false);
     }
     #endregion
 }
