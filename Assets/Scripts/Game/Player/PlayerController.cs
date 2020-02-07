@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     #region パラメータ
     [SerializeField]private float moveSpeed = 300f;
 
-    [SerializeField]private float slashSpeed = 70f;
-
     //public float slashCount { get; set; } = 0;    //UIの表示で取得したい
     
     [SerializeField]private float jumpPower = 3000f;
@@ -49,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             {
                 ChangeLayer(true);
 
-                _playerAttacks.IaiSlash(slashSpeed);
+                _playerAttacks.IaiSlash();
                 _playerAnimator.DOMoveAnimation();
             });
 

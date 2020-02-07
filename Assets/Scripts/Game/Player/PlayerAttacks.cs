@@ -2,14 +2,17 @@
 
 public class PlayerAttacks : MonoBehaviour
 {
-    private Rigidbody _rigidbody;   
-            
+    [SerializeField]
+    private float slashSpeed = 100f;
+
+    private Rigidbody _rigidbody;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void IaiSlash(float slashSpeed) //TODO:複数のことをやっているので分ける
+    public void IaiSlash() //TODO:複数のことをやっているので分ける
     {
         var pos = Camera.main.WorldToScreenPoint(transform.localPosition); //コンストラクタを作るとエラーを吐く
 
