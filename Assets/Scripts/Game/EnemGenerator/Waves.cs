@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
@@ -6,6 +7,9 @@ using System.Linq;
 
 public class Waves : MonoBehaviour
 {
+    [SerializeField]
+    private float waveInterval = 1.5f;
+
     private List<Wave> waveList = new List<Wave>();
 
     private int currentWaveIndex = 0;
@@ -29,7 +33,7 @@ public class Waves : MonoBehaviour
         //Wave更新用
         this.UpdateAsObservable()
             .Where(_ => CurrentWave.GetActiveEnemyValue() == 0 && HasNextWave)
-           .Subscribe(_ => OnUpdateNextWave());
+           .Subscribe(_ => StartCoroutine(OnUpdateNextWave()));
     }
 
     private void InitializeWaveList()
@@ -48,12 +52,14 @@ public class Waves : MonoBehaviour
         CurrentWave.gameObject.SetActive(true);
     }
 
-    private void OnUpdateNextWave()
+    private IEnumerator OnUpdateNextWave()
     {
         //Waveの変更(ex.1->2)
         CurrentWave.gameObject.SetActive(false);
 
         currentWaveIndex++;
+
+        yield return new WaitForSeconds(waveInterval);
 
         CurrentWave.gameObject.SetActive(true);
     }
