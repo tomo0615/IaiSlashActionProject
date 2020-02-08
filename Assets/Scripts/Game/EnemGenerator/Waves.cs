@@ -9,11 +9,13 @@ public class Waves : MonoBehaviour
     private List<Wave> waveList = new List<Wave>();
 
     private int currentWaveIndex = 0;
-    public Wave CurrentWave() => waveList[currentWaveIndex];
+    public Wave CurrentWave => waveList[currentWaveIndex];
 
-    public int WaveMaxCount() => waveList.Count;
+    public Wave LastWave => waveList[WaveMaxCount];
 
-    public bool HasNextWave() => currentWaveIndex + 1 < WaveMaxCount();
+    public int WaveMaxCount => waveList.Count;
+
+    public bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
 
     private void Awake()
     {
@@ -26,7 +28,7 @@ public class Waves : MonoBehaviour
 
         //Wave更新用
         this.UpdateAsObservable()
-            .Where(_ => CurrentWave().GetActiveEnemyValue() == 0)
+            .Where(_ => CurrentWave.GetActiveEnemyValue() == 0 && HasNextWave)
            .Subscribe(_ => OnUpdateNextWave());
     }
 
@@ -43,17 +45,16 @@ public class Waves : MonoBehaviour
 
     public void OnStartWave()
     {
-        CurrentWave().gameObject.SetActive(true);
+        CurrentWave.gameObject.SetActive(true);
     }
 
     private void OnUpdateNextWave()
     {
-        if (!HasNextWave()) return;//GameClear!
-
         //Waveの変更(ex.1->2)
-        CurrentWave().gameObject.SetActive(false);
+        CurrentWave.gameObject.SetActive(false);
 
         currentWaveIndex++;
-        CurrentWave().gameObject.SetActive(true);
+
+        CurrentWave.gameObject.SetActive(true);
     }
 }
