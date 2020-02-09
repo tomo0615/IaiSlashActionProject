@@ -1,5 +1,6 @@
 ﻿using IaiAction.Enemys;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 //コンフリクトしないように名前をTestにしてます
@@ -10,26 +11,16 @@ public class Wave : MonoBehaviour
     public void InitializeWave()
     {
         //子のEnemyをListに格納
-        var enemys = GetComponentsInChildren<BaseEnemy>();
-
-        foreach(var enemy in enemys)
-        {
-            enemyList.Add(enemy);
-        }
+        enemyList = GetComponentsInChildren<BaseEnemy>().ToList();
     }
 
-    public int GetActiveEnemyValue()
+    public bool IsKillAllEnemy()
     {
-        int activeValue = 0;
+        return GetActiveEnemyValue() == 0;
+    }
 
-        foreach (var enemy in enemyList)
-        {
-            if (enemy.gameObject.activeSelf)
-            {
-                activeValue++;
-            }
-        }
-
-        return activeValue;
+    private int GetActiveEnemyValue()
+    {
+        return enemyList.Count(enemy => enemy.gameObject.activeSelf);
     }
 }

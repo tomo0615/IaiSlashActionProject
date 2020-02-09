@@ -32,8 +32,8 @@ public class Waves : MonoBehaviour
 
         //Wave更新用
         this.UpdateAsObservable()
-            .Where(_ => CurrentWave.GetActiveEnemyValue() == 0 && HasNextWave)
-           .Subscribe(_ => StartCoroutine(OnUpdateNextWave()));
+            .Where(_ => CurrentWave.IsKillAllEnemy() && HasNextWave)
+            .Subscribe(_ => StartCoroutine(OnUpdateNextWave()));
     }
 
     private void InitializeWaveList()
