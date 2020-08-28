@@ -1,4 +1,7 @@
-﻿public interface IDamageable
+﻿namespace Game.Interface
 {
-    void ApplyDamage();
+    public interface IDamageable
+    {
+        void ApplyDamage();
+    }
 }
