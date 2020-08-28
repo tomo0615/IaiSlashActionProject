@@ -2,7 +2,7 @@
 
 namespace Game.Player
 {
-    public class PlayerAttacks : MonoBehaviour
+    public class PlayerAttacker : MonoBehaviour
     {
         [SerializeField]
         private float slashSpeed = 100f;
@@ -11,14 +11,18 @@ namespace Game.Player
 
         private Rigidbody _rigidbody;
 
+        private Camera _camera;
+        
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            
+            _camera = Camera.main;
         }
 
         public void IaiSlash() //TODO:複数のことをやっているので分ける
         {
-            var pos = Camera.main.WorldToScreenPoint(transform.localPosition); //コンストラクタを作るとエラーを吐く
+            var pos = _camera.WorldToScreenPoint(transform.localPosition); //コンストラクタを作るとエラーを吐く
 
             var lookDirection = (Vector2)(Input.mousePosition - pos);
             lookDirection = lookDirection.normalized;

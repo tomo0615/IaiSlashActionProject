@@ -2,7 +2,7 @@
 
 namespace Game.Player
 {
-    public class PlayerInputs
+    public class PlayerInput
     {
         public KeyCode 
             chargeKey = KeyCode.Mouse0,

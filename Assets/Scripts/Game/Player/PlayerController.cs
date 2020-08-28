@@ -6,11 +6,11 @@ namespace Game.Player
 {
     public class PlayerController : MonoBehaviour, IDamageable
     {
-        private PlayerInputs _playerInputs;
+        private PlayerInput playerInput;
 
         private PlayerMover _playerMover;
 
-        private PlayerAttacks _playerAttacks;
+        private PlayerAttacker playerAttacker;
 
         private PlayerAnimator _playerAnimator;
 
@@ -28,35 +28,35 @@ namespace Game.Player
 
         private void Awake()
         {
-            _playerInputs = new PlayerInputs();
+            playerInput = new PlayerInput();
             _playerMover = new PlayerMover(GetComponent<Rigidbody>(), transform);
-            _playerAttacks = GetComponent<PlayerAttacks>();
+            playerAttacker = GetComponent<PlayerAttacker>();
             _playerAnimator = new PlayerAnimator(transform);
         }
         private void Start()
         {
             //入力
             this.UpdateAsObservable()
-                .Subscribe(_ => _playerInputs.InputKeys());
+                .Subscribe(_ => playerInput.InputKeys());
 
             //Move
             this.FixedUpdateAsObservable()
                 .Where(_ => isMoveable)
                 .Subscribe(_ =>
                 {
-                    _playerMover.Move(_playerInputs.MoveDirection() * moveSpeed);
+                    _playerMover.Move(playerInput.MoveDirection() * moveSpeed);
                 });
             
         
             //居合攻撃
             this.UpdateAsObservable()
-                .Where(_ => _playerInputs.IsAttack)
+                .Where(_ => playerInput.IsAttack)
                 .Subscribe(_ =>
                 {
                     ChangeLayer(true);
-                    _playerAttacks.ActiveAttackCollider(true);
+                    playerAttacker.ActiveAttackCollider(true);
 
-                    _playerAttacks.IaiSlash();
+                    playerAttacker.IaiSlash();
                     _playerAnimator.DOMoveAnimation();
                 });
 
@@ -65,7 +65,7 @@ namespace Game.Player
                 .Where(_ => IsJumpable() && isMoveable)
                 .Subscribe(_ =>
                 {
-                    _playerMover.Jump(_playerInputs.JumpDirection() * jumpPower);
+                    _playerMover.Jump(playerInput.JumpDirection() * jumpPower);
 
                     jumpCount--;
                 });
@@ -83,13 +83,13 @@ namespace Game.Player
                     }
 
                     ChangeLayer(false);
-                    _playerAttacks.ActiveAttackCollider(false);
+                    playerAttacker.ActiveAttackCollider(false);
                 });
         }
 
         private bool IsJumpable()
         {
-            return jumpCount > 0 && _playerInputs.JumpDirection().magnitude > 0;
+            return jumpCount > 0 && playerInput.JumpDirection().magnitude > 0;
         }
     
         private void ChangeLayer(bool attackFlag)
