@@ -1,13 +1,10 @@
-﻿using IaiAction.Enemys;
-
-public class PracticeEnemy : BaseEnemy
+﻿namespace Game.Enemy
 {
-    public override void ApplyDamage()
+    public class PracticeEnemy : BaseEnemy
     {
+        public override void ApplyDamage()
+        {
       
-    }
-
-    public override void Attacked()
-    {
+        }
     }
 }

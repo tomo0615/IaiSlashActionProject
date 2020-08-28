@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UniRx;
 using System;
+using Game.Interface;
 
 public enum EnemyState
 {
@@ -10,9 +11,9 @@ public enum EnemyState
     Freeze
 };
 
-namespace IaiAction.Enemys
+namespace Game.Enemy
 {
-    public abstract class BaseEnemy : MonoBehaviour, IDamageable, IAttackable
+    public abstract class BaseEnemy : MonoBehaviour, IDamageable
     {
         #region パラメータ
         [SerializeField] public int hitPoint = 1;
@@ -22,13 +23,13 @@ namespace IaiAction.Enemys
 
         public Subject<int> hpSubject = new Subject<int>();
 
-        public IObservable<int> OnHPChanged { get { return hpSubject; } }
+        public IObservable<int> OnHpChanged => hpSubject;
 
         public EnemyState currentState;
 
         private void Start()
         {
-            this.OnHPChanged
+            this.OnHpChanged
                 .Subscribe(_ =>
                 {
                     if (hitPoint <= 0) Death();
@@ -88,8 +89,5 @@ namespace IaiAction.Enemys
         }
 
         public abstract void ApplyDamage();
-
-
-        public abstract void Attacked();
     }
 }

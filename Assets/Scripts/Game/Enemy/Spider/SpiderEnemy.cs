@@ -1,54 +1,59 @@
-﻿using IaiAction.Enemys;
+﻿using System.Collections;
+using Game.Player;
 using UnityEngine;
-using System.Collections;
-public class SpiderEnemy : BaseEnemy
+using Zenject;
+
+namespace Game.Enemy.Spider
 {
-    [SerializeField]private float explosionTime = 3f;
-    private void Update() //TODO:EnemyUpdateに変更してManagerクラスのUpdateで呼び出す
+    public class SpiderEnemy : BaseEnemy
     {
-        if (currentState == EnemyState.Chase) Chase();
-    }
+        [SerializeField] private float explosionTime = 3f;
 
-    private void Chase()
-    {
-        var playerPos = PlayerManager.Instance.playerTransform.position;
-
-        var direction = (playerPos - transform.position).normalized;
-
-        if (Vector2.Distance(playerPos, transform.position) <= 1.5f)
+        [SerializeField] private float attackableRange = 1.5f;
+        
+        [Inject] private PlayerController playerController;
+        
+        private void Update() //TODO:EnemyUpdateに変更してManagerクラスのUpdateで呼び出す
         {
-            StartCoroutine(Explode());
-            SetEnemyState(EnemyState.Attack);
+            if (currentState == EnemyState.Chase) Chase();
         }
 
-        transform.position += direction * moveSpeed * Time.deltaTime;
-    }
+        private void Chase()
+        {
+            var playerPosition = playerController.transform.position;
+            
+            var direction = (playerPosition - transform.position).normalized;
 
-     private IEnumerator Explode()
-    {
-        /*数秒間その場にとまってから爆発する
+            if (Vector2.Distance(playerPosition, transform.position) <= attackableRange)
+            {
+                StartCoroutine(Explode());
+                SetEnemyState(EnemyState.Attack);
+            }
+
+            transform.position += direction * moveSpeed * Time.deltaTime;
+        }
+
+        private IEnumerator Explode()
+        {
+            /*数秒間その場にとまってから爆発する
         1.移動のStateを切る DONE
         2.爆破のアニメーションを作動
         3.一定時間後当たり判定を出現（爆破）
         */
-       yield return new WaitForSeconds(explosionTime);
+            yield return new WaitForSeconds(explosionTime);
 
-        //ココを爆発エフェクトに変更する
-       GameEffectManager.Instance.OnGenelateEffect(
-           transform.position,
-           EffectType.Explosion);
+            //ココを爆発エフェクトに変更する
+            GameEffectManager.Instance.OnGenelateEffect(
+                transform.position,
+                EffectType.Explosion);
 
-        hitPoint = 0;
-    }
+            hitPoint = 0;
+        }
 
-    public  override void ApplyDamage()
-    {
-
-    }
-
-    public override void Attacked()
-    {
-        hitPoint--;
-        hpSubject.OnNext(hitPoint);
+        public  override void ApplyDamage()
+        {
+            hitPoint--;
+            hpSubject.OnNext(hitPoint);
+        }
     }
 }
