@@ -58,18 +58,18 @@ namespace IaiAction.Enemys
         #region　State用関数
         private void Wait()
         {
-            Debug.Log("Waitなう");
+            //Debug.Log("Waitなう");
             //待機モーション
         }
 
         private void Attack()
         {
-            Debug.Log("Attackなう");
+            //Debug.Log("Attackなう");
             //当たり判定のある何かを出す　or アニメーションを動かす
         }
         private void Chase()
         {
-            Debug.Log("Chaseなう");
+            //Debug.Log("Chaseなう");
             //moveAnimation実装
         }
 
@@ -82,7 +82,7 @@ namespace IaiAction.Enemys
         public void Death()
         {
             //TODO：死んだときのeffectの追加
-            Debug.Log("死");
+            //Debug.Log("死");
             gameObject.SetActive(false);
             //Destroy(gameObject);
         }

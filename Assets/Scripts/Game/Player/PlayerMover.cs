@@ -1,41 +1,44 @@
 ﻿using UnityEngine;
 
-public class PlayerMover
+namespace Game.Player
 {
-    private readonly Rigidbody _rigidbody;
-    private readonly Transform _transform;
-    private float dx;
-
-    public PlayerMover(Rigidbody rigidbody, Transform transform)
+    public class PlayerMover
     {
-        _rigidbody = rigidbody;
-        _transform = transform;
-    }
+        private readonly Rigidbody _rigidbody;
+        private readonly Transform _transform;
+        private float dx;
 
-    public void Move(Vector3 moveDirection)
-    {
-        _rigidbody.MovePosition(_transform.position + moveDirection * Time.deltaTime);
-
-
-        //TODO:アニメーションで何とかする
-        //向き変更
-        if (moveDirection.x > 0)
+        public PlayerMover(Rigidbody rigidbody, Transform transform)
         {
-            _transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            _rigidbody = rigidbody;
+            _transform = transform;
         }
-        else if(moveDirection.x < 0)
+
+        public void Move(Vector3 moveDirection)
         {
-            _transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            _rigidbody.MovePosition(_transform.position + moveDirection * Time.deltaTime);
+
+
+            //TODO:アニメーションで何とかする
+            //向き変更
+            if (moveDirection.x > 0)
+            {
+                _transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            else if(moveDirection.x < 0)
+            {
+                _transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
         }
-    }
 
-    public void Jump(Vector2 jumpDirection)
-    {
-        _rigidbody.AddForce(jumpDirection);
-    }
+        public void Jump(Vector2 jumpDirection)
+        {
+            _rigidbody.AddForce(jumpDirection);
+        }
 
-    public void Stop()
-    {
-        _rigidbody.velocity = Vector3.zero;
+        public void Stop()
+        {
+            _rigidbody.velocity = Vector3.zero;
+        }
     }
 }
