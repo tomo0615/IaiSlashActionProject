@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using Game.Interface;
+using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 

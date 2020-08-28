@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using Game.Interface;
+using UnityEngine;
 
-public class AttackObject : MonoBehaviour
+namespace Game.Player
 {
-    private void OnTriggerEnter(Collider other)
+    public class AttackObject : MonoBehaviour
     {
-        var attackable = other.GetComponent<IAttackable>();
-        if (attackable != null)
+        private void OnTriggerEnter(Collider other)
         {
-            attackable.Attacked();
+            var damageable = other.GetComponent<IDamageable>();
+            if (damageable == null) return;
+        
+            damageable.ApplyDamage();
 
             //GameEffectManager.Instance.ShakeCamera(0.25f);
 
