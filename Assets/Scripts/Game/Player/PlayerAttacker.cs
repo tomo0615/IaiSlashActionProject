@@ -7,7 +7,7 @@ namespace Game.Player
         [SerializeField]
         private float slashSpeed = 100f;
         [SerializeField]
-        private GameObject attackObject = null;//攻撃時にPlayerの前に出るオブジェクト
+        private AttackObject attackObject = null; //攻撃時の当たり判定用
 
         private Rigidbody _rigidbody;
 
@@ -18,25 +18,25 @@ namespace Game.Player
             _rigidbody = GetComponent<Rigidbody>();
             
             _camera = Camera.main;
+            
+            attackObject.Initialize();
         }
 
         public void IaiSlash() //TODO:複数のことをやっているので分ける
         {
-            var pos = _camera.WorldToScreenPoint(transform.localPosition); //コンストラクタを作るとエラーを吐く
-
-            var lookDirection = (Vector2)(Input.mousePosition - pos);
-            lookDirection = lookDirection.normalized;
+            var playerPosition = _camera.WorldToScreenPoint(transform.localPosition);
+            
+            var lookDirection = (Vector2)(Input.mousePosition - playerPosition).normalized;
 
             var rotation = Quaternion.LookRotation(Vector3.forward, lookDirection);
             transform.localRotation = rotation * Quaternion.Euler(0f, 0f, 90f);
-
-            _rigidbody.velocity = Vector2.zero;
+            
             _rigidbody.velocity = lookDirection * slashSpeed;
         }
 
         public void ActiveAttackCollider(bool attackFlag)
         {
-            attackObject.SetActive(attackFlag);
+            attackObject.gameObject.SetActive(attackFlag);
         }
 
         /*

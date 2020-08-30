@@ -1,22 +1,29 @@
 ﻿using Game.Interface;
+using UniRx.Triggers;
 using UnityEngine;
+using UniRx;
 
 namespace Game.Player
 {
     public class AttackObject : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+        public void Initialize()
         {
-            var damageable = other.GetComponent<IDamageable>();
-            if (damageable == null) return;
-        
-            damageable.ApplyDamage();
+            this.OnTriggerEnterAsObservable()
+                .Select(damageable => damageable.GetComponent<IDamageable>())
+                .Where(damageable => damageable != null)
+                .Subscribe(damageable =>
+                {
+                    damageable.ApplyDamage();
+                    
+                    //GameEffectManager.Instance.ShakeCamera(0.25f);
 
-            //GameEffectManager.Instance.ShakeCamera(0.25f);
-
-            GameEffectManager.Instance.OnGenelateEffect(
-                transform.position,
-                EffectType.Slash);
+                    GameEffectManager.Instance.OnGenelateEffect(
+                        transform.position,
+                        EffectType.Slash);
+                });
+            
+            gameObject.SetActive(false);
         }
     }
 }
