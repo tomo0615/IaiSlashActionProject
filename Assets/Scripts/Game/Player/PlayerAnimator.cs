@@ -5,16 +5,17 @@ namespace Game.Player
 {
     public class PlayerAnimator
     {
-        private Transform _transform;
+        private readonly Transform _transform;
 
         public PlayerAnimator(Transform transform)
         {
             _transform = transform;
         }
 
-        public void DOMoveAnimation()
+        public void DoMoveAnimation()
         {
-            Vector3 horizontalLongScale = new Vector3(_transform.localScale.x, _transform.localScale.y * 0.2f);
+            var localScale = _transform.localScale;
+            var horizontalLongScale = new Vector3(localScale.x, localScale.y * 0.2f);
 
             _transform.DOScale(horizontalLongScale, 0.2f)
                 .OnComplete(() =>

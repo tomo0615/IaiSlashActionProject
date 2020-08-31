@@ -28,9 +28,9 @@ namespace Game.EnemyGenerator
             InitializeWaveList();
         }
 
-        void Start()
+        private void Start()
         {
-            OnStartWave();
+            OnStartWave(); //Test
 
             //Wave更新用
             this.UpdateAsObservable()
@@ -48,7 +48,8 @@ namespace Game.EnemyGenerator
                     return wave;
                 }).ToList();
         }
-
+        
+        //管理系から実行予定
         public void OnStartWave()
         {
             CurrentWave.gameObject.SetActive(true);

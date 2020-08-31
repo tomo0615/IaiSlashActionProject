@@ -58,7 +58,7 @@ namespace Game.Player
                     _playerAttacker.ActiveAttackCollider(true);
 
                     _playerAttacker.IaiSlash();
-                    _playerAnimator.DOMoveAnimation();
+                    _playerAnimator.DoMoveAnimation();
                 });
 
             //ジャンプ

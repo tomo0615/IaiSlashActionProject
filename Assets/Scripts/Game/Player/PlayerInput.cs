@@ -4,9 +4,9 @@ namespace Game.Player
 {
     public class PlayerInput
     {
-        public KeyCode 
-            chargeKey = KeyCode.Mouse0,
-            attackKey = KeyCode.Mouse0;
+        private const KeyCode 
+            ChargeKey = KeyCode.Mouse0,
+            AttackKey = KeyCode.Mouse0;
 
         private float _horizontal;
 
@@ -24,8 +24,8 @@ namespace Game.Player
         public Vector2 JumpDirection() =>
             (Vector2.up * _vertical);
 
-        public bool IsAttack => Input.GetKeyUp(attackKey);
+        public bool IsAttack => Input.GetKeyUp(AttackKey);
 
-        public bool IsCharge => Input.GetKey(chargeKey);
+        public bool IsCharge => Input.GetKey(ChargeKey);
     }
 }
