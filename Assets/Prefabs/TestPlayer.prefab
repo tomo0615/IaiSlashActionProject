@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3589302417507756311}
   - component: {fileID: 3589302417507756313}
   - component: {fileID: 3589302417507756312}
+  - component: {fileID: 1599666360}
   m_Layer: 0
   m_Name: AttackObject
   m_TagString: Attack
@@ -61,6 +62,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.83886576, z: 1}
   m_Center: {x: 0, y: -0.032768965, z: 0}
+--- !u!114 &1599666360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589302417507756310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d704a9abf5e064596fc8d40e6c3d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3589302417787850504
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +130,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -157,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3589302418351386321
 Transform:
   m_ObjectHideFlags: 0
@@ -167,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 3589302418351386320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 3589302418509838084}
   m_RootOrder: 0
@@ -800,7 +814,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 17.230402
+    angle: 5.15209
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -1057,15 +1071,15 @@ ParticleSystem:
         m_RotationOrder: 4
     rateOverDistance:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 2
+      minMaxState: 0
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.4972229
+          value: 0.24994029
           inSlope: 0.7301112
           outSlope: 0.7301112
           tangentMode: 0
@@ -1074,7 +1088,7 @@ ParticleSystem:
           outWeight: 0.19298245
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0.73913
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1500,6 +1514,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 0
     mode: 0
     timeMode: 0
@@ -1617,7 +1632,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -2428,8 +2443,61 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
+    serializedVersion: 2
     enabled: 0
-    multiplier: 1
+    multiplierCurve:
+      serializedVersion: 2
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
+      maxCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      minCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
@@ -4803,6 +4871,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4853,8 +4922,9 @@ GameObject:
   - component: {fileID: 3589302418509838083}
   - component: {fileID: 3589302418509838082}
   - component: {fileID: 3589302418509838081}
+  - component: {fileID: 1322142038}
   m_Layer: 8
-  m_Name: Player
+  m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4890,10 +4960,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  slashSpeed: 70
   jumpPower: 2500
   jumpCount: 1
-  attackObject: {fileID: 3589302417507756310}
 --- !u!114 &3589302418509838087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4906,6 +4974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73521604d72c774bb87968166e2cd11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slashSpeed: 100
+  attackObject: {fileID: 1599666360}
 --- !u!23 &3589302418509838085
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4931,6 +5001,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -4980,3 +5051,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
+--- !u!114 &1322142038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589302418509838080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0166d8ff8d905b048b2448179e1f5d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - {fileID: 3589302418509838086}
+  _identifier: 
+  _useSceneContext: 0
+  _context: {fileID: 0}
+  _bindType: 0
