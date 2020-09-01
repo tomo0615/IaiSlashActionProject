@@ -1,17 +1,10 @@
-﻿using GameEnd;
-using Player;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-namespace GameState
+namespace Game.GameStates
 {
     public class GameStateManager : StateMachine<GameState>
     {
-        [Inject] private PlayerController _playerController;
-
-        [SerializeField]
-        private GameEndPresenter gameEndPresenter = default;
-        
         private void Awake()
         {
             InitializeStateMachine();
@@ -19,28 +12,28 @@ namespace GameState
 
         private void Start()
         {
-            GoToState(GameState.Setting);
+            GoToState(global::Game.GameStates.GameState.Setting);
         }
 
         private void InitializeStateMachine()
         {
             //Setting
             {
-                var state = new State<GameState>(GameState.Setting);
+                var state = new State<global::Game.GameStates.GameState>(global::Game.GameStates.GameState.Setting);
                 state.SetUpAction = OnSetUpSetting;
                 state.UpdateAction = OnUpdateSetting;
                 AddState(state);
             }
             //Game
             {
-                var state = new State<GameState>(GameState.Game);
+                var state = new State<global::Game.GameStates.GameState>(global::Game.GameStates.GameState.Game);
                 state.SetUpAction = OnSetUpGame;
                 state.UpdateAction = OnUpdateGame;
                 AddState(state);
             }
             //Finish
             {
-                var state = new State<GameState>(GameState.Finish);
+                var state = new State<global::Game.GameStates.GameState>(global::Game.GameStates.GameState.Finish);
                 state.SetUpAction = OnSetUpFinish;
                 state.UpdateAction = OnUpdateFinish;
                 AddState(state);
@@ -55,7 +48,7 @@ namespace GameState
 
         private void OnUpdateSetting()
         {
-            GoToState(GameState.Game);
+            GoToState(global::Game.GameStates.GameState.Game);
         }
         #endregion
 
@@ -70,18 +63,13 @@ namespace GameState
         {
             //Playerを使えるようにする
             //playerController.UpdatePlayerAction();
-
-            if (gameEndPresenter.IsGameEnd)
-            {
-                GoToState(GameState.Finish);
-            }
         }
         #endregion
 
         #region FinishMethod
         private void OnSetUpFinish()
         {
-            gameEndPresenter.OnResult();
+            
         }
         private void OnUpdateFinish()
         {

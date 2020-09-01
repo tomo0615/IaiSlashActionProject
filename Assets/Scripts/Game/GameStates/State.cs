@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameState
+namespace Game.GameStates
 {
     public class State<T>
     {

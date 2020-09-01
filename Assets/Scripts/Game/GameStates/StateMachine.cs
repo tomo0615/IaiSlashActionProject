@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameState
+namespace Game.GameStates
 {
     public class StateMachine<T> : MonoBehaviour
     {

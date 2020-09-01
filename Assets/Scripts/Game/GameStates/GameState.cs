@@ -1,4 +1,4 @@
-﻿namespace GameState
+﻿namespace Game.GameStates
 {
     public enum GameState
     {
