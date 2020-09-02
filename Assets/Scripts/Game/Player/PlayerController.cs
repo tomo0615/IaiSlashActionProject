@@ -34,7 +34,7 @@ namespace Game.Player
             _playerAttacker = GetComponent<PlayerAttacker>();
             _playerAnimator = new PlayerAnimator(transform);
         }
-        private void Start()
+        public void Initialize()
         {
             //入力
             this.UpdateAsObservable()

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Game.Player;
+using UnityEngine;
 using Zenject;
 
 namespace Game.GameStates
 {
     public class GameStateManager : StateMachine<GameState>
     {
+        [Inject] private PlayerController playerController;
+        
         private void Awake()
         {
             InitializeStateMachine();
@@ -12,28 +15,28 @@ namespace Game.GameStates
 
         private void Start()
         {
-            GoToState(global::Game.GameStates.GameState.Setting);
+            GoToState(GameState.Setting);
         }
 
         private void InitializeStateMachine()
         {
             //Setting
             {
-                var state = new State<global::Game.GameStates.GameState>(global::Game.GameStates.GameState.Setting);
+                var state = new State<global::Game.GameStates.GameState>(GameState.Setting);
                 state.SetUpAction = OnSetUpSetting;
                 state.UpdateAction = OnUpdateSetting;
                 AddState(state);
             }
             //Game
             {
-                var state = new State<global::Game.GameStates.GameState>(global::Game.GameStates.GameState.Game);
+                var state = new State<global::Game.GameStates.GameState>(GameState.Game);
                 state.SetUpAction = OnSetUpGame;
                 state.UpdateAction = OnUpdateGame;
                 AddState(state);
             }
             //Finish
             {
-                var state = new State<global::Game.GameStates.GameState>(global::Game.GameStates.GameState.Finish);
+                var state = new State<global::Game.GameStates.GameState>(GameState.Finish);
                 state.SetUpAction = OnSetUpFinish;
                 state.UpdateAction = OnUpdateFinish;
                 AddState(state);
@@ -43,12 +46,12 @@ namespace Game.GameStates
         #region SettingMethod
         private void OnSetUpSetting()
         {
-
+            GoToState(GameState.Game);
         }
 
         private void OnUpdateSetting()
         {
-            GoToState(global::Game.GameStates.GameState.Game);
+            
         }
         #endregion
 
@@ -56,7 +59,7 @@ namespace Game.GameStates
 
         private void OnSetUpGame()
         {
- 
+            playerController.Initialize();
         }
 
         private void OnUpdateGame()
