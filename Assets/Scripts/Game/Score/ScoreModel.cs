@@ -1,21 +1,21 @@
 ﻿using UniRx;
 
-public class ScoreModel
+namespace Game.Score
 {
-    private ReactiveProperty<int> _scoring;
-
-    public IReadOnlyReactiveProperty<int> Scoring
+    public class ScoreModel
     {
-        get { return _scoring; }
-    }
+        private ReactiveProperty<int> _scoring;
 
-    public ScoreModel()
-    {
-        _scoring = new ReactiveProperty<int>(0);
-    }
+        public IReadOnlyReactiveProperty<int> Scoring => _scoring;
 
-    public void UpdateScoreValue(int value)
-    {
-        _scoring.Value += value;
+        public ScoreModel()
+        {
+            _scoring = new ReactiveProperty<int>(0);
+        }
+
+        public void UpdateScoreValue(int value)
+        {
+            _scoring.Value += value;
+        }
     }
 }

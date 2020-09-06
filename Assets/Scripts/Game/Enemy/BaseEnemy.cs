@@ -2,6 +2,8 @@
 using UniRx;
 using System;
 using Game.Interface;
+using Game.Score;
+using Zenject;
 
 public enum EnemyState
 {
@@ -27,6 +29,8 @@ namespace Game.Enemy
 
         public EnemyState currentState;
 
+        [Inject] private ScorePresenter scorePresenter;
+        
         private void Start()
         {
             this.OnHpChanged
@@ -86,6 +90,8 @@ namespace Game.Enemy
             //Debug.Log("死");
             gameObject.SetActive(false);
             //Destroy(gameObject);
+            
+            scorePresenter.OnChangeScore(10);
         }
 
         public abstract void ApplyDamage();

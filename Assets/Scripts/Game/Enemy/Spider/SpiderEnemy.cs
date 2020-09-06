@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Game.Player;
+using Game.Score;
 using UnityEngine;
 using Zenject;
 
@@ -50,7 +51,7 @@ namespace Game.Enemy.Spider
             hitPoint = 0;
         }
 
-        public  override void ApplyDamage()
+        public override void ApplyDamage()
         {
             hitPoint--;
             hpSubject.OnNext(hitPoint);
