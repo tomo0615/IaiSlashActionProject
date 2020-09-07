@@ -57,6 +57,8 @@ namespace Game.Enemy
                 case EnemyState.Freeze:
                     Freeze();
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(state), state, null);
             }
         }
 
