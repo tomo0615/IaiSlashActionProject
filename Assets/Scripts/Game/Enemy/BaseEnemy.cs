@@ -5,40 +5,33 @@ using Game.Interface;
 using Game.Score;
 using Zenject;
 
-public enum EnemyState
-{
-    Wait,
-    Chase,
-    Attack,
-    Freeze
-};
-
 namespace Game.Enemy
 {
     public abstract class BaseEnemy : MonoBehaviour, IDamageable
     {
-        #region パラメータ
-        [SerializeField] public int hitPoint = 1;
+        [SerializeField] protected float moveSpeed = 10;
 
-        [SerializeField] public float moveSpeed = 10;
-        #endregion
-
-        public Subject<int> hpSubject = new Subject<int>();
-
-        public IObservable<int> OnHpChanged => hpSubject;
-
+        [SerializeField] private int hitPoint = 1;
+        
+        public ReactiveProperty<int> currentHitPoint;
+        
         public EnemyState currentState;
 
         [Inject] private ScorePresenter scorePresenter;
         
-        private void Start()
+        public virtual void Initialize()
         {
-            this.OnHpChanged
+            currentHitPoint = new ReactiveProperty<int>(hitPoint);
+            
+            currentHitPoint
+                .Where(value => value <= 0)
                 .Subscribe(_ =>
-                {
-                    if (hitPoint <= 0) Death();
+                { 
+                    Debug.Log("Death");
+                    Death();
                 });
         }
+        
         public void SetEnemyState(EnemyState state)
         {
             currentState = state;

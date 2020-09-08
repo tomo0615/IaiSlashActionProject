@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Game.Player;
 using Game.Score;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
@@ -13,10 +15,17 @@ namespace Game.Enemy.Spider
         [SerializeField] private float attackableRange = 1.5f;
         
         [Inject] private PlayerController playerController;
-        
-        private void Update() //TODO:EnemyUpdateに変更してManagerクラスのUpdateで呼び出す
+
+        public override void Initialize()
         {
-            if (currentState == EnemyState.Chase) Chase();
+            base.Initialize();
+            
+            this.UpdateAsObservable()
+                .Where(_ => currentState == EnemyState.Chase)
+                .Subscribe(_ =>
+                {
+                    Chase();
+                });
         }
 
         private void Chase()
@@ -31,6 +40,7 @@ namespace Game.Enemy.Spider
                 SetEnemyState(EnemyState.Attack);
             }
 
+            transform.LookAt(playerPosition);
             transform.position += direction * moveSpeed * Time.deltaTime;
         }
 
@@ -48,13 +58,12 @@ namespace Game.Enemy.Spider
                 transform.position,
                 EffectType.Explosion);
 
-            hitPoint = 0;
+            currentHitPoint.Value = 0;
         }
 
         public override void ApplyDamage()
         {
-            hitPoint--;
-            hpSubject.OnNext(hitPoint);
+            currentHitPoint.Value--;
         }
     }
 }
