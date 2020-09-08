@@ -30,7 +30,7 @@ namespace Game.EnemyGenerator
 
         private void Start()
         {
-            OnStartWave(); //Test
+            OnStartWave(); //GameStateManagerで呼び出す
 
             //Wave更新用
             this.UpdateAsObservable()
@@ -52,7 +52,7 @@ namespace Game.EnemyGenerator
         //管理系から実行予定
         public void OnStartWave()
         {
-            CurrentWave.gameObject.SetActive(true);
+            CurrentWave.OnActiveWave();
         }
 
         private IEnumerator OnUpdateNextWave()
@@ -64,7 +64,7 @@ namespace Game.EnemyGenerator
 
             yield return new WaitForSeconds(waveInterval);
 
-            CurrentWave.gameObject.SetActive(true);
+            CurrentWave.OnActiveWave();
         }
     }
 }

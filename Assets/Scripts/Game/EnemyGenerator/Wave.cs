@@ -16,6 +16,16 @@ namespace Game.EnemyGenerator
             enemyList = GetComponentsInChildren<BaseEnemy>().ToList();
         }
 
+        public void OnActiveWave()
+        {
+            gameObject.SetActive(true);
+
+            foreach (var enemy in enemyList)
+            {
+                enemy.Initialize();
+            }
+        }
+
         public bool IsKillAllEnemy()
         {
             return GetActiveEnemyValue() == 0;
