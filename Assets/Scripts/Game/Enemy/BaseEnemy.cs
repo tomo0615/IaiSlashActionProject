@@ -26,8 +26,7 @@ namespace Game.Enemy
             currentHitPoint
                 .Where(value => value <= 0)
                 .Subscribe(_ =>
-                { 
-                    Debug.Log("Death");
+                {
                     Death();
                 });
         }
@@ -82,10 +81,9 @@ namespace Game.Enemy
         public void Death()
         {
             //TODO：死んだときのeffectの追加
-            //Debug.Log("死");
+
             gameObject.SetActive(false);
-            //Destroy(gameObject);
-            
+
             scorePresenter.OnChangeScore(10);
         }
 
