@@ -6,9 +6,9 @@ namespace Game.Player.PlayerGUI
 {
     public class BlackBeltView : MonoBehaviour
     {
-        [SerializeField] private Image blackBeltUp;
+        [SerializeField] private Image blackBeltUp = default;
 
-        [SerializeField] private Image blackBeltDawn;
+        [SerializeField] private Image blackBeltDawn = default;
 
         private readonly Vector3 fadeScale = new Vector3(1, 0, 1);
 

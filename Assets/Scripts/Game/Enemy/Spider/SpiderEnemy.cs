@@ -14,7 +14,7 @@ namespace Game.Enemy.Spider
 
         [SerializeField] private float attackableRange = 1.5f;
         
-        [Inject] private PlayerController playerController;
+        [Inject] private PlayerController playerController = default;
 
         public override void Initialize()
         {

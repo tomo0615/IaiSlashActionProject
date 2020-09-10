@@ -3,7 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace SceneLoader
+namespace Game.FadeSceneLoader
 {
     public class NowLoadingView : MonoBehaviour
     {
@@ -11,9 +11,7 @@ namespace SceneLoader
         private string loadingString = "Now Loading";
 
         private TextMeshProUGUI _loadingText;
-
-        [SerializeField] private float fadeCount = 1;
-    
+        
         private const int AnimationCount = 3;
         
         private void Awake()

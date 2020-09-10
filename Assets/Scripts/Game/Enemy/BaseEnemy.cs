@@ -17,7 +17,7 @@ namespace Game.Enemy
         
         public EnemyState currentState;
 
-        [Inject] private ScorePresenter scorePresenter;
+        [Inject] private ScorePresenter scorePresenter = default;
         
         public virtual void Initialize()
         {

@@ -5,7 +5,7 @@ namespace Game.Start
 {
     public class StartView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI startText;
+        [SerializeField] private TextMeshProUGUI startText = default;
         
         public void ViewStartSign()
         {

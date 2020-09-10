@@ -1,10 +1,11 @@
 ﻿using System;
 using Plugins.Fade.Scripts;
+using SceneLoader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace SceneLoader
+namespace Game.FadeSceneLoader
 {
     public class FadeSceneLoader : MonoBehaviour
     { 

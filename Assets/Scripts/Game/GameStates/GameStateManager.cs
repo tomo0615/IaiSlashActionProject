@@ -1,4 +1,6 @@
 ﻿using Game.Player;
+using Game.Player.PlayerGUI;
+using Game.Start;
 using UnityEngine;
 using Zenject;
 
@@ -6,8 +8,12 @@ namespace Game.GameStates
 {
     public class GameStateManager : StateMachine<GameState>
     {
-        [Inject] private PlayerController playerController;
-        
+        [Inject] private PlayerController playerController = default;
+
+        [SerializeField] private BlackBeltView blackBeltView = default;
+
+        [SerializeField] private StartView startView = default;
+
         private void Awake()
         {
             InitializeStateMachine();
@@ -46,6 +52,8 @@ namespace Game.GameStates
         #region SettingMethod
         private void OnSetUpSetting()
         {
+            blackBeltView.ViewBlackBelt();
+            
             GoToState(GameState.Game);
         }
 
@@ -60,6 +68,8 @@ namespace Game.GameStates
         private void OnSetUpGame()
         {
             playerController.Initialize();
+            
+            blackBeltView.FadeBlackBelt();
         }
 
         private void OnUpdateGame()
