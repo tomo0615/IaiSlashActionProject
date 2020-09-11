@@ -14,14 +14,14 @@ namespace Game.Player.PlayerGUI
 
         public void ViewBlackBelt()
         {
-            blackBeltUp.transform.DOScale(Vector3.one, 1.0f);
-            blackBeltDawn.transform.DOScale(Vector3.one, 1.0f);
+            blackBeltUp.transform.DOScale(Vector3.one, 0.5f);
+            blackBeltDawn.transform.DOScale(Vector3.one, 0.5f);
         }
 
         public void FadeBlackBelt()
         {
-            blackBeltUp.transform.DOScale(fadeScale, 1.0f);
-            blackBeltDawn.transform.DOScale(fadeScale, 1.0f);
+            blackBeltUp.transform.DOScale(fadeScale, 0.5f);
+            blackBeltDawn.transform.DOScale(fadeScale, 0.5f);
         }
     }
 }

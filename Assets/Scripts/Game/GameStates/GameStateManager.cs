@@ -54,12 +54,14 @@ namespace Game.GameStates
         {
             blackBeltView.ViewBlackBelt();
             
-            GoToState(GameState.Game);
+            startView.ViewStartSign();
         }
 
         private void OnUpdateSetting()
         {
-            
+            if(startView.isFinished == false) return;
+                        
+            GoToState(GameState.Game);
         }
         #endregion
 
