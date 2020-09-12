@@ -11,8 +11,15 @@ namespace Game.Start
         public bool isFinished = false;
         public void ViewStartSign()
         {
+            startText.enabled = true;
+            
             startText.transform.DOScale(Vector3.one * 5, 1.0f)
-                .OnComplete(() => isFinished = true);
+                .OnComplete(() =>
+                {
+                    isFinished = true;
+
+                    startText.enabled = false;
+                });
         }
     }
 }
