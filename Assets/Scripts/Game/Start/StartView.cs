@@ -9,6 +9,7 @@ namespace Game.Start
         [SerializeField] private TextMeshProUGUI startText = default;
 
         public bool isFinished = false;
+        
         public void ViewStartSign()
         {
             startText.enabled = true;

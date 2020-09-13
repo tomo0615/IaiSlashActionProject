@@ -1041,13 +1041,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 706914609}
-    characterCount: 5
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -2574,7 +2574,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7363968538397589344, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363968538397589344, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 2.2735236
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363968538397589344, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363968538397589344, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.7546474
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363968538397589344, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.3562438
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363968538397589344, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.2796035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3513861884674416013, guid: 5d4b5a591108c0845a849291cf3ba9e4,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7363968538893174273, guid: 5d4b5a591108c0845a849291cf3ba9e4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5d4b5a591108c0845a849291cf3ba9e4, type: 3}
 --- !u!1001 &8882838431110326918
 PrefabInstance:

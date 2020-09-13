@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Game.Player;
-using Game.Score;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -40,6 +39,7 @@ namespace Game.Enemy.Spider
                 SetEnemyState(EnemyState.Attack);
             }
 
+            playerPosition.y = transform.position.y; //上方向にむかせないため
             transform.LookAt(playerPosition);
             transform.position += direction * moveSpeed * Time.deltaTime;
         }
