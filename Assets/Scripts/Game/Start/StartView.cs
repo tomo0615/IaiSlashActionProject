@@ -8,18 +8,22 @@ namespace Game.Start
     {
         [SerializeField] private TextMeshProUGUI startText = default;
 
-        public bool isFinished = false;
+        [HideInInspector]public bool isFinished = false;
+        
+        private const int MovedEndPosition = 630;
         
         public void ViewStartSign()
         {
             startText.enabled = true;
-            
-            startText.transform.DOScale(Vector3.one * 5, 1.0f)
+
+            DOTween.Sequence()
+                .Append(startText.rectTransform.DOLocalMove(Vector3.zero, 0.5f))
+                .Append(startText.rectTransform.DOLocalMoveX(MovedEndPosition, 0.5f))
                 .OnComplete(() =>
                 {
                     isFinished = true;
 
-                    startText.enabled = false;
+                    // startText.enabled = false;
                 });
         }
     }
