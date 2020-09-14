@@ -14,17 +14,10 @@ namespace Game.Start
         
         public void ViewStartSign()
         {
-            startText.enabled = true;
-
             DOTween.Sequence()
                 .Append(startText.rectTransform.DOLocalMove(Vector3.zero, 0.5f))
                 .Append(startText.rectTransform.DOLocalMoveX(MovedEndPosition, 0.5f))
-                .OnComplete(() =>
-                {
-                    isFinished = true;
-
-                    // startText.enabled = false;
-                });
+                .OnComplete(() => isFinished = true);
         }
     }
 }
