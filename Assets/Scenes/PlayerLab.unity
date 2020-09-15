@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 605590822}
   - component: {fileID: 605590824}
   m_Layer: 5
-  m_Name: WaveText
+  m_Name: WaveTextView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -722,7 +722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1049, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605590822
@@ -1386,6 +1386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveInterval: 1.5
+  waveTextView: {fileID: 605590824}
 --- !u!1 &974262828
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 namespace Game.EnemyWave.GUI
 {
@@ -10,22 +11,28 @@ namespace Game.EnemyWave.GUI
         [SerializeField] private RectTransform moveEndTransform;
 
         private RectTransform myRectTransform;
+
+        private TextMeshProUGUI waveText;
         
-        private void Start()
+        private const float AnimationTime = 0.25f;
+        
+        private void Awake()
         {
             myRectTransform = GetComponent<RectTransform>();
-            
-            DoMoveAnimation();
+
+            waveText = GetComponent<TextMeshProUGUI>();
         }
         
-        public void DoMoveAnimation()
+        public void DoMoveAnimation(int waveIndex)
         {
             transform.position = moveStartTransform.position;
 
+            waveText.text = "wave " + waveIndex;
+            
             DOTween.Sequence()
-                .Append(myRectTransform.DOMoveX(moveEndTransform.position.x / 2, 0.25f))
-                .AppendInterval(0.25f)
-                .Append(myRectTransform.DOMoveX(moveEndTransform.position.x, 0.25f));
+                .Append(myRectTransform.DOLocalMoveX(0, AnimationTime))
+                .AppendInterval(AnimationTime)
+                .Append(myRectTransform.DOMoveX(moveEndTransform.position.x, AnimationTime));
         }
     }
 }

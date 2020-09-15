@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Game.EnemyWave;
+using Game.EnemyWave.GUI;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -24,6 +25,8 @@ namespace Game.EnemyGenerator
 
         public bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
 
+        [SerializeField] private WaveTextView waveTextView;
+        
         private void Awake()
         {
             InitializeWaveList();
@@ -54,6 +57,8 @@ namespace Game.EnemyGenerator
         public void OnStartWave()
         {
             CurrentWave.OnActiveWave();
+            
+            waveTextView.DoMoveAnimation(currentWaveIndex + 1);
         }
 
         private IEnumerator OnUpdateNextWave()
@@ -66,6 +71,8 @@ namespace Game.EnemyGenerator
             yield return new WaitForSeconds(waveInterval);
 
             CurrentWave.OnActiveWave();
+            
+            waveTextView.DoMoveAnimation(currentWaveIndex + 1);
         }
     }
 }
