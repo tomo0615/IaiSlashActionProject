@@ -4,7 +4,7 @@ using Game.Enemy;
 using UnityEngine;
 
 //コンフリクトしないように名前をTestにしてます
-namespace Game.EnemyGenerator
+namespace Game.EnemyWave
 {
     public class Wave : MonoBehaviour
     {
