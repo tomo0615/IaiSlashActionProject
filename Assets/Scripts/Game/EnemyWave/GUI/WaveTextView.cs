@@ -9,7 +9,7 @@ namespace Game.EnemyWave.GUI
         [SerializeField] private RectTransform moveStartTransform;
 
         [SerializeField] private RectTransform moveEndTransform;
-
+        
         private RectTransform myRectTransform;
 
         private TextMeshProUGUI waveText;

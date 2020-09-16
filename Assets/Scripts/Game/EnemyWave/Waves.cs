@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Game.EnemyWave;
 using Game.EnemyWave.GUI;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace Game.EnemyGenerator
+namespace Game.EnemyWave
 {
     public class Waves : MonoBehaviour
     {
@@ -26,6 +25,8 @@ namespace Game.EnemyGenerator
         public bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
 
         [SerializeField] private WaveTextView waveTextView;
+
+        [SerializeField] private WaveIntervalView waveIntervalView;
         
         private void Awake()
         {
@@ -58,7 +59,7 @@ namespace Game.EnemyGenerator
         {
             CurrentWave.OnActiveWave();
             
-            waveTextView.DoMoveAnimation(currentWaveIndex + 1);
+            //waveTextView.DoMoveAnimation(currentWaveIndex + 1);
         }
 
         private IEnumerator OnUpdateNextWave()
@@ -68,8 +69,12 @@ namespace Game.EnemyGenerator
 
             currentWaveIndex++;
 
+            waveIntervalView.FillIntervalFrame(waveInterval);
+            
             yield return new WaitForSeconds(waveInterval);
 
+            waveIntervalView.ResetFillAmount();
+            
             CurrentWave.OnActiveWave();
             
             waveTextView.DoMoveAnimation(currentWaveIndex + 1);
