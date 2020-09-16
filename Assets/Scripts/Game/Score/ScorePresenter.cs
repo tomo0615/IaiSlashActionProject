@@ -27,7 +27,8 @@ namespace Game.Score
         {
             _scoreModel.UpdateScoreValue(value);
         }
-    
+        
+        //最終スコア取得用
         public int GetScoreValue()
         {
             return _scoreModel.Scoring.Value;
