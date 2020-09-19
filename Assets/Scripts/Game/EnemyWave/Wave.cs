@@ -16,7 +16,7 @@ namespace Game.EnemyWave
             enemyList = GetComponentsInChildren<BaseEnemy>().ToList();
         }
 
-        public void OnActiveWave()
+        public void ActivateWave()
         {
             gameObject.SetActive(true);
 

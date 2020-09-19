@@ -57,7 +57,7 @@ namespace Game.EnemyWave
         //管理系から実行予定
         public void OnStartWave()
         {
-            CurrentWave.OnActiveWave();
+            CurrentWave.ActivateWave();
         }
 
         private IEnumerator OnUpdateNextWave()
@@ -73,7 +73,7 @@ namespace Game.EnemyWave
 
             waveIntervalView.ResetFillAmount();
             
-            CurrentWave.OnActiveWave();
+            CurrentWave.ActivateWave();
             
             waveTextView.DoMoveAnimation(currentWaveIndex + 1);
         }
