@@ -58,8 +58,6 @@ namespace Game.EnemyWave
         public void OnStartWave()
         {
             CurrentWave.OnActiveWave();
-            
-            //waveTextView.DoMoveAnimation(currentWaveIndex + 1);
         }
 
         private IEnumerator OnUpdateNextWave()
