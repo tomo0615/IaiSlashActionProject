@@ -5,19 +5,20 @@ namespace Game.Timer
 {
     public class TimerModel
     {
-        private readonly ReactiveProperty<int> timerValue;
+        private ReactiveProperty<int> timerValue;
 
         public IReadOnlyReactiveProperty<int> TimerValue => timerValue;
 
         private bool _isActiveTimer = true;
+        
         public TimerModel()
         {
             timerValue = new ReactiveProperty<int>(0);
         }
 
-        public void SetTimeValue()
+        public void SetTimeValue(int timeValue)
         {
-            
+            timerValue.Value = timeValue;
         }
         
         public IObservable<long> CreateTimerObservable()
@@ -25,6 +26,11 @@ namespace Game.Timer
             return Observable
                 .Timer(TimeSpan.Zero,TimeSpan.FromSeconds(1))
                 .TakeWhile(x => _isActiveTimer);
+        }
+
+        public void ActivateTimer(bool isActive)
+        {
+            _isActiveTimer = isActive;
         }
     }
 }
