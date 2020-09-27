@@ -2834,6 +2834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2029009086}
+  - component: {fileID: 2029009087}
   m_Layer: 0
   m_Name: TimerPresenter
   m_TagString: Untagged
@@ -2855,6 +2856,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029009087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029009085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9072fac2b55e442c824332acafe0ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerView: {fileID: 2071186353}
 --- !u!1 &2029483922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3025,8 +3039,9 @@ GameObject:
   - component: {fileID: 2071186350}
   - component: {fileID: 2071186352}
   - component: {fileID: 2071186351}
+  - component: {fileID: 2071186353}
   m_Layer: 5
-  m_Name: ResultView
+  m_Name: TimerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3171,6 +3186,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071186349}
   m_CullTransparentMesh: 0
+--- !u!114 &2071186353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071186349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ff04cbe2dce403782190c0c25a079f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 2071186351}
 --- !u!1 &2077375908
 GameObject:
   m_ObjectHideFlags: 0
