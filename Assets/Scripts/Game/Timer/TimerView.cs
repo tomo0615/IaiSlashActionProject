@@ -7,7 +7,7 @@ namespace Game.Timer
     {
         [SerializeField] private TextMeshProUGUI timerText;
 
-        public void SetTimeValue(int timeValue)
+        public void ViewTimeValue(int timeValue)
         {
             timerText.text = ConvertMinuteTime(timeValue);
         }

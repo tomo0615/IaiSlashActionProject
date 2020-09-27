@@ -99,7 +99,7 @@ namespace Game.GameStates
         #region FinishMethod
         private void OnSetUpFinish()
         {
-            timerPresenter.OnStartTimer();
+            timerPresenter.OnFinishTimer();
             
             resultView.ActivateResult(true);
         }

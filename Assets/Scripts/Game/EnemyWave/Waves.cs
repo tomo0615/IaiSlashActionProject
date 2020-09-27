@@ -18,7 +18,7 @@ namespace Game.EnemyWave
         private int currentWaveIndex = 0;
         public Wave CurrentWave => waveList[currentWaveIndex];
 
-        public Wave LastWave => waveList[WaveMaxCount];
+        public Wave LastWave => waveList[WaveMaxCount - 1];
 
         private int WaveMaxCount => waveList.Count;
 
@@ -78,7 +78,7 @@ namespace Game.EnemyWave
 
         public bool IsEndWave()
         {
-            return HasNextWave && CurrentWave.IsKillAllEnemy();
+            return CurrentWave.IsKillAllEnemy() && currentWaveIndex + 1 == WaveMaxCount;
         }
     }
 }
