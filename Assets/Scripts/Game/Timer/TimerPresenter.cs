@@ -23,7 +23,7 @@ namespace Game.Timer
                 .Subscribe(value => { timerModel.SetTimeValue((int)value); },
                     () =>
                     {
-                        timerView.ViewTimeValue(timerModel.TimerValue.Value);
+                        timerView.SetTimeValue(timerModel.TimerValue.Value);
                     });
         }
 

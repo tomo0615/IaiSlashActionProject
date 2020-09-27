@@ -6,8 +6,8 @@ namespace Game.Timer
     public class TimerView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI timerText;
-        
-        public void ViewTimeValue(int timeValue)
+
+        public void SetTimeValue(int timeValue)
         {
             timerText.text = ConvertMinuteTime(timeValue);
         }

@@ -1,6 +1,9 @@
-﻿using Game.Player;
+﻿using Game.EnemyWave;
+using Game.Player;
 using Game.Player.PlayerGUI;
+using Game.Result;
 using Game.Start;
+using Game.Timer;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +17,12 @@ namespace Game.GameStates
 
         [SerializeField] private StartView startView = default;
 
+        [SerializeField] private ResultView resultView;
+
+        [SerializeField] private TimerPresenter timerPresenter;
+
+        [SerializeField] private Waves waves;
+        
         private void Awake()
         {
             InitializeStateMachine();
@@ -72,23 +81,31 @@ namespace Game.GameStates
             playerController.Initialize();
             
             blackBeltView.FadeBlackBelt();
+            
+            timerPresenter.OnStartTimer();
+            
+            waves.OnStartWave();
         }
 
         private void OnUpdateGame()
         {
-            //Playerを使えるようにする
-            //playerController.UpdatePlayerAction();
+            if (waves.IsEndWave())
+            {
+                 GoToState(GameState.Finish);
+            }
         }
         #endregion
 
         #region FinishMethod
         private void OnSetUpFinish()
         {
+            timerPresenter.OnStartTimer();
             
+            resultView.ActivateResult(true);
         }
         private void OnUpdateFinish()
         {
-            //Debug.Log("Finish");
+            
         }
         #endregion
     }

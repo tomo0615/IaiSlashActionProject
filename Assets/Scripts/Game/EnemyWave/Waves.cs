@@ -20,9 +20,9 @@ namespace Game.EnemyWave
 
         public Wave LastWave => waveList[WaveMaxCount];
 
-        public int WaveMaxCount => waveList.Count;
+        private int WaveMaxCount => waveList.Count;
 
-        public bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
+        private bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
 
         [SerializeField] private WaveTextView waveTextView;
 
@@ -35,8 +35,6 @@ namespace Game.EnemyWave
 
         private void Start()
         {
-            OnStartWave(); //GameStateManagerで呼び出す
-
             //Wave更新用
             this.UpdateAsObservable()
                 .Where(_ => CurrentWave.IsKillAllEnemy() && HasNextWave)
@@ -76,6 +74,11 @@ namespace Game.EnemyWave
             CurrentWave.ActivateWave();
             
             waveTextView.DoMoveAnimation(currentWaveIndex + 1);
+        }
+
+        public bool IsEndWave()
+        {
+            return HasNextWave && CurrentWave.IsKillAllEnemy();
         }
     }
 }
