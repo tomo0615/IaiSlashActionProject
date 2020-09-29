@@ -16,10 +16,9 @@ namespace Game.EnemyWave
         private List<Wave> waveList = new List<Wave>();
 
         private int currentWaveIndex = 0;
-        public Wave CurrentWave => waveList[currentWaveIndex];
-
-        public Wave LastWave => waveList[WaveMaxCount - 1];
-
+        
+        private Wave CurrentWave => waveList[currentWaveIndex];
+        
         private int WaveMaxCount => waveList.Count;
 
         private bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
