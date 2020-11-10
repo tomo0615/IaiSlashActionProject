@@ -27,6 +27,8 @@ namespace Game.Player
 
         private bool isMoveable = true;
 
+        private bool isAttackable = true;
+        
         private void Awake()
         {
             _playerInput = new PlayerInput();
@@ -49,8 +51,9 @@ namespace Game.Player
                 });
             
         
-            //居合攻撃
+            //居合攻撃 壁に触れたら攻撃可能に
             this.UpdateAsObservable()
+                .Where(_ => isAttackable)
                 .Where(_ => _playerInput.IsAttack)
                 .Subscribe(_ =>
                 {
@@ -59,6 +62,16 @@ namespace Game.Player
 
                     _playerAttacker.IaiSlash();
                     _playerAnimator.DoMoveAnimation();
+
+                    isAttackable = false;
+                });
+
+            this.OnCollisionEnterAsObservable()
+                .Select(collision => collision.gameObject.tag)
+                .Where(collision => collision == "Ground" || collision == "Wall")
+                .Subscribe(_ =>
+                {
+                    isAttackable = true;
                 });
 
             //ジャンプ
@@ -92,7 +105,7 @@ namespace Game.Player
         {
             return jumpCount > 0 && _playerInput.JumpDirection().magnitude > 0;
         }
-    
+
         private void ChangeLayer(bool attackFlag)
         {
             var layerName = attackFlag ? "NoneHitEnemy" : "Player";
