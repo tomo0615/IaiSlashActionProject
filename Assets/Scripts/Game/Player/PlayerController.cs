@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Player
 {
-    public class PlayerController : MonoBehaviour, IDamageable
+    public class PlayerController : MonoBehaviour
     {
         private PlayerInput _playerInput;
 
@@ -111,11 +111,6 @@ namespace Game.Player
             var layerName = attackFlag ? "NoneHitEnemy" : "Player";
 
             gameObject.layer = LayerMask.NameToLayer(layerName);
-        }
-
-        public void ApplyDamage()
-        {
-            //ダメージを食らう処理
         }
     }
 }
