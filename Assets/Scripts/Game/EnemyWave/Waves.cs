@@ -13,19 +13,19 @@ namespace Game.EnemyWave
         [SerializeField]
         private float waveInterval = 1.5f;
 
-        private List<Wave> waveList = new List<Wave>();
+        private List<Wave> _waveList = new List<Wave>();
 
-        private int currentWaveIndex = 0;
+        private int _currentWaveIndex = 0;
         
-        private Wave CurrentWave => waveList[currentWaveIndex];
+        private Wave CurrentWave => _waveList[_currentWaveIndex];
         
-        private int WaveMaxCount => waveList.Count;
+        private int WaveMaxCount => _waveList.Count;
 
-        private bool HasNextWave => currentWaveIndex + 1 < WaveMaxCount;
+        private bool HasNextWave => _currentWaveIndex + 1 < WaveMaxCount;
 
-        [SerializeField] private WaveTextView waveTextView;
+        [SerializeField] private WaveTextView waveTextView = default;
 
-        [SerializeField] private WaveIntervalView waveIntervalView;
+        [SerializeField] private WaveIntervalView waveIntervalView = default;
         
         private void Awake()
         {
@@ -42,7 +42,7 @@ namespace Game.EnemyWave
 
         private void InitializeWaveList()
         {
-            waveList = GetComponentsInChildren<Wave>().Select(
+            _waveList = GetComponentsInChildren<Wave>().Select(
                 (wave, index) =>
                 {
                     wave.InitializeWave();
@@ -62,7 +62,7 @@ namespace Game.EnemyWave
             //Waveの変更(ex.1->2)
             CurrentWave.gameObject.SetActive(false);
 
-            currentWaveIndex++;
+            _currentWaveIndex++;
 
             waveIntervalView.FillIntervalFrame(waveInterval);
             
@@ -72,12 +72,12 @@ namespace Game.EnemyWave
             
             CurrentWave.ActivateWave();
             
-            waveTextView.DoMoveAnimation(currentWaveIndex + 1);
+            waveTextView.DoMoveAnimation(_currentWaveIndex + 1);
         }
 
         public bool IsEndWave()
         {
-            return CurrentWave.IsKillAllEnemy() && currentWaveIndex + 1 == WaveMaxCount;
+            return CurrentWave.IsKillAllEnemy() && _currentWaveIndex + 1 == WaveMaxCount;
         }
     }
 }

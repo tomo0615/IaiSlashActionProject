@@ -5,7 +5,7 @@ namespace Game.Timer
 {
     public class TimerView : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI timerText;
+        [SerializeField] private TextMeshProUGUI timerText = default;
 
         public void ViewTimeValue(int timeValue)
         {

@@ -6,9 +6,9 @@ namespace Game.EnemyWave.GUI
 {
     public class WaveTextView : MonoBehaviour
     {
-        [SerializeField] private RectTransform moveStartTransform;
+        [SerializeField] private RectTransform moveStartTransform = default;
 
-        [SerializeField] private RectTransform moveEndTransform;
+        [SerializeField] private RectTransform moveEndTransform = default;
         
         private RectTransform myRectTransform;
 

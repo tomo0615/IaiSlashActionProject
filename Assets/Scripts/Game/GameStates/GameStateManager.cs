@@ -17,11 +17,11 @@ namespace Game.GameStates
 
         [SerializeField] private StartView startView = default;
 
-        [SerializeField] private ResultView resultView;
+        [SerializeField] private ResultView resultView = default;
 
-        [SerializeField] private TimerPresenter timerPresenter;
+        [SerializeField] private TimerPresenter timerPresenter = default;
 
-        [SerializeField] private Waves waves;
+        [SerializeField] private Waves waves = default;
         
         private void Awake()
         {

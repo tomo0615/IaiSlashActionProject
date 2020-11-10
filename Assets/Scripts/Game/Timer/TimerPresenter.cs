@@ -7,7 +7,7 @@ namespace Game.Timer
     {
         private TimerModel timerModel;
 
-        [SerializeField] private TimerView timerView;
+        [SerializeField] private TimerView timerView = default;
 
         private void Start()
         {
