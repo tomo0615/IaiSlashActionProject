@@ -9,7 +9,7 @@ namespace WeaponDefine
         BUFF = 1,
         ELEMENT = 2,
         ATTACHMENT = 3,
-        MAX = 4,
+        MAX = 99,
     }   
 
     public enum WeaponID 
@@ -18,7 +18,7 @@ namespace WeaponDefine
         HEALTH_UP = 1,    
         POWER_UP = 2,
         SPEED_UP = 3,
-        MAX = 4,
+        MAX = 99,
     }
 
     [System.Serializable]
@@ -53,9 +53,11 @@ namespace WeaponDefine
 
         ICE = 4,
 
-        EXPLOSION = 5,
+        STAN = 5,
 
-        MAX = 6,
+        EXPLOSION = 6,
+
+        MAX = 99,
     }
 }
 

@@ -20,7 +20,7 @@ namespace Game.Enemy.Spider
             base.Initialize();
             
             this.UpdateAsObservable()
-                .Where(_ => currentState == EnemyState.Chase)
+                .Where(_ => _currentState == EnemyState.Chase)
                 .Subscribe(_ =>
                 {
                     Chase();
@@ -41,29 +41,24 @@ namespace Game.Enemy.Spider
 
             playerPosition.y = transform.position.y; //上方向にむかせないため
             transform.LookAt(playerPosition);
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            transform.position += direction * _moveSpeed * Time.deltaTime;
         }
 
         private IEnumerator Explode()
         {
-            /*数秒間その場にとまってから爆発する
-        1.移動のStateを切る DONE
-        2.爆破のアニメーションを作動
-        3.一定時間後当たり判定を出現（爆破）
-        */
+            /*
+            数秒間その場にとまってから爆発する
+            1.移動のStateを切る DONE
+            2.爆破のアニメーションを作動
+            3.一定時間後当たり判定を出現（爆破）
+            */
             yield return new WaitForSeconds(explosionTime);
 
-            //ココを爆発エフェクトに変更する
             GameEffectManager.Instance.OnGenelateEffect(
                 transform.position,
                 EffectType.Explosion);
 
-            currentHitPoint.Value = 0;
-        }
-
-        public override void ApplyDamage()
-        {
-            currentHitPoint.Value--;
+            _currentHitPoint.Value = 0;
         }
     }
 }

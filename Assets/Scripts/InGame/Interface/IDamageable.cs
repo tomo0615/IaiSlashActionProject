@@ -1,7 +1,9 @@
-﻿namespace Game.Interface
+﻿using DamageDefine;
+
+namespace Game.Interface
 {
     public interface IDamageable
     {
-        void ApplyDamage();
+        void TakeDamage(DamageParam damageParam);
     }
 }
