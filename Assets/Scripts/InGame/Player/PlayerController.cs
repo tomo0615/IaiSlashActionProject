@@ -2,6 +2,8 @@
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using WeaponDefine;
+using Zenject;
 
 namespace Game.Player
 {
@@ -29,6 +31,8 @@ namespace Game.Player
 
         private bool isAttackable = true;
         
+        [Inject]private WeaponManager _weaponManager;
+
         private void Awake()
         {
             _playerInput = new PlayerInput();
@@ -111,6 +115,68 @@ namespace Game.Player
             var layerName = attackFlag ? "NoneHitEnemy" : "Player";
 
             gameObject.layer = LayerMask.NameToLayer(layerName);
+        }
+        private void CheckWeapon()
+        {
+            BaseWeapon weapon = _weaponManager.GetWeaponNearestPlayer(transform.position);
+
+            if(weapon)
+            {
+                EquipWeapon(weapon);
+            }
+        }   
+
+        private void EquipWeapon(BaseWeapon weapon)
+        {
+            WeaponType type = weapon.GetWeaponType();
+
+            switch(type)
+            {
+                case WeaponType.BUFF:
+                    EquipBuffWeapon(weapon);
+                break;
+                case WeaponType.ELEMENT:
+                    EquipElementWeapon(weapon);
+                break;
+                case WeaponType.ATTACHMENT:
+                    EquipAttachmentWeapon(weapon);
+                break;
+                default:
+                break;
+            }
+        }
+
+    private void EquipBuffWeapon(BaseWeapon weapon)
+    {
+        BuffWeapon buffWeapon = weapon as BuffWeapon;
+
+        if(buffWeapon == null) return;
+
+        buffWeapon.GetBuffParams();
+
+        Debug.Log("Equip Buff");
+    } 
+
+        private void EquipElementWeapon(BaseWeapon weapon)
+        {
+            ElementWeapon elementWeapon = weapon as ElementWeapon;
+
+            if(elementWeapon == null) return;
+
+            //Playerの持っている属性に保存する
+
+            Debug.Log("Equip Element");
+        }
+
+        private void EquipAttachmentWeapon(BaseWeapon weapon)
+        {
+            AttachmentWeapon attachmentWeapon = weapon as AttachmentWeapon;
+
+            if(attachmentWeapon == null) return;
+
+            //Weapon生成処理
+
+            Debug.Log("Equip Attach");
         }
     }
 }

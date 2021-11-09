@@ -169,7 +169,7 @@ namespace Game.Enemy
             _isTakeWind = true;
 
             yield return new WaitForSeconds(1.0f);
-
+            
             _isTakeWind = false;
         }
 
