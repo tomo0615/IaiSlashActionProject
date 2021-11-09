@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using WeaponDefine;
 
-public class BuffWeapons : BaseWeapon
+public class BuffWeapon : BaseWeapon
 {
     [SerializeField]
     private BuffParams _buffParams;
